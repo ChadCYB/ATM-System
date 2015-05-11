@@ -26,8 +26,13 @@ public class LogInFrame extends JFrame {
 	private JTextField jtfAcc=new JTextField("b00001");
 	private JPasswordField jpfPass=new JPasswordField("458712");
 	private Container cp;
+	private boolean tt = false;
 	
-	private void initComp(LogIn login){
+	public boolean status(){
+		return tt;
+	}
+	
+	private void initComp(final LogIn login){
 		setVisible(true);
 		this.setTitle("LogIn");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -73,7 +78,7 @@ public class LogInFrame extends JFrame {
 				if(login.findAccount()){								//是否登入成功
 					JOptionPane.showMessageDialog(null,"Welcome "+login.getUserName()+" !");
 					setVisible(false);
-//					System.exit(0);
+					tt = true;
 				}else{
 					JOptionPane.showMessageDialog(null,"Ops! "+sAcc+" please try again!");
 				}

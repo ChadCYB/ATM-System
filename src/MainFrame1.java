@@ -25,7 +25,7 @@ public class MainFrame1 extends JFrame {
 		this.setTitle("ATM");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
-		setBounds(300,300,350,200);
+		setBounds(300,300,400,500);
 		cp = this.getContentPane();
 		cp.setLayout(null);
 		cp.setBackground(Color.orange);
