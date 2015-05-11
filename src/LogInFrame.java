@@ -79,7 +79,6 @@ public class LogInFrame extends JFrame {
 					JOptionPane.showMessageDialog(null,"Welcome "+login.getUserName()+" !");
 					setVisible(false);
 					tt = true;
-//					System.exit(0);
 				}else{
 					JOptionPane.showMessageDialog(null,"Ops! "+sAcc+" please try again!");
 				}

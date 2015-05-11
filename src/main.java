@@ -1,5 +1,5 @@
 
-public class mainC {
+public class main {
 
 	public static void main(String[] args) {
 		Bank aBank = new Bank();
