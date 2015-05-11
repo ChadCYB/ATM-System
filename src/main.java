@@ -12,7 +12,7 @@ public class main {
 		do{
 			System.out.print("");
 		}while(!loginFrame.status());
-//		System.out.println("status: login success");
+//		System.out.println("login success");
 		MainFrame1 mFrame1 = new MainFrame1(aBank);
 		
 	}

@@ -82,7 +82,7 @@ public class LogInFrame extends JFrame {
 				}else{
 					JOptionPane.showMessageDialog(null,"Ops! "+sAcc+" please try again!");
 				}
-//				System.out.println("ACC: "+account+", PASS: "+passwd+", "+theBank.findAccount(account, passwd));
+//				System.out.println("ACC: "+account+", PASS: "+passwd+");
 			}
 		});
 	}
