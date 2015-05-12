@@ -77,8 +77,9 @@ public class LogInFrame extends JFrame {
 				login.setPassWD(new String(jpfPass.getPassword()));		//帳戶PIN
 				if(login.findAccount()){								//是否登入成功
 					JOptionPane.showMessageDialog(null,"Welcome "+login.getUserName()+" !");
-					setVisible(false);
+//					setVisible(false);
 					tt = true;
+					dispose();				//關閉視窗
 				}else{
 					JOptionPane.showMessageDialog(null,"Ops! "+sAcc+" please try again!");
 				}
