@@ -15,12 +15,12 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 public class MainFrame1 extends JFrame {
-	public MainFrame1(Bank theBank){
-		initComp(theBank);
+	public MainFrame1(ATM theATM){
+		initComp(theATM);
 	}
 	private Container cp;
 	
-	private void initComp(Bank theBank){
+	private void initComp(ATM theATM){
 		setVisible(true);
 		this.setTitle("ATM");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
