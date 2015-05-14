@@ -4,7 +4,7 @@
 
 public class LogIn {
 	private String aID, aPIN;
-	Bank theBank;
+	private Bank theBank;
 	public LogIn(Bank bank){
 		theBank = bank;
 	}
@@ -15,7 +15,7 @@ public class LogIn {
 		aPIN = pwd;
 	}
 	public boolean findAccount(){
-		return theBank.findAccID(aID)==theBank.findAccPIN(aPIN);
+		return theBank.validate(aID, aPIN);
 	}
 	public String getUserName(){
 		return theBank.getAccName(aID, aPIN);
