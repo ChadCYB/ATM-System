@@ -11,6 +11,4 @@ public abstract class Customer {
 	public String getID(){return id;}
 	public String getAddress(){return address;}
 	public String getTel(){return tel;}
-	
-//	public abstract void show();	//©â¶H¤èªk
 }
