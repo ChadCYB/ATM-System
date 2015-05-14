@@ -15,8 +15,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 public class LogInFrame extends JFrame {
-	public LogInFrame(LogIn login){
-		initComp(login);
+	public LogInFrame(LogIn login, ATM atm){
+		initComp(login,atm);
 	}
 	private JButton jbtnClear=new JButton("Clear");
 	private JButton jbtnLogin=new JButton("LogIn");
@@ -32,7 +32,7 @@ public class LogInFrame extends JFrame {
 		return tt;
 	}
 	
-	private void initComp(final LogIn login){
+	private void initComp(final LogIn login, final ATM atm){
 		setVisible(true);
 		this.setTitle("LogIn");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -78,12 +78,12 @@ public class LogInFrame extends JFrame {
 				if(login.findAccount()){								//是否登入成功
 					JOptionPane.showMessageDialog(null,"Welcome "+login.getUserName()+" !");
 //					setVisible(false);
+					atm.setAccUser(sAcc, new String(jpfPass.getPassword()));
 					tt = true;
-					dispose();				//關閉視窗
+					dispose();											//關閉視窗
 				}else{
 					JOptionPane.showMessageDialog(null,"Ops! "+sAcc+" please try again!");
 				}
-//				System.out.println("ACC: "+account+", PASS: "+passwd+", "+theBank.findAccount(account, passwd));
 			}
 		});
 	}
