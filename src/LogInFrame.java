@@ -13,14 +13,11 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
-import javax.swing.border.EmptyBorder;
 
 public class LogInFrame extends JFrame {
 	public LogInFrame(LogIn login, ATM atm){
 		initComp(login,atm);
 	}
-	private JTextField textField;
-	private JPasswordField passwordField;
 	
 	private JButton jbtnClear1=new JButton("Clear");
 	private JButton jbtnClear2=new JButton("Clear");
@@ -58,16 +55,14 @@ public class LogInFrame extends JFrame {
 		this.setTitle("LogIn");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(true);
-		setBounds(600,600,700,400);
+		setBounds(300,300,500,500);
 		cp = this.getContentPane();
-		cp.setLayout(new BorderLayout());
-		cp.setBackground(Color.orange);
-		
+		cp.setLayout(new BorderLayout());		
 		cp.add(jp1,BorderLayout.NORTH);
 		cp.add(jp2,BorderLayout.CENTER);
 		
 		jp1.setLayout(new GridLayout(0,3,2,5));
-		
+		jp1.setBackground(new Color(180,240,245));
 		jp1.add(jlb1);
 		jp1.add(jtfAcc);
 		jp1.add(jbtnClear1);
@@ -76,12 +71,11 @@ public class LogInFrame extends JFrame {
 		jp1.add(jbtnClear2);
 		
 		jp2.setLayout(new BorderLayout());
-		
 		jp2.add(jp3,BorderLayout.CENTER);
 		jp2.add(jp4,BorderLayout.EAST);
 		
 		jp3.setLayout(new GridLayout(0, 3, 4, 5));
-		
+		jp3.setBackground(Color.orange);
 		jp3.add(jbtnNumber1);
 		jp3.add(jbtnNumber2);
 		jp3.add(jbtnNumber3);
@@ -96,11 +90,9 @@ public class LogInFrame extends JFrame {
 		jp3.add(jbtnNumberb);
 		
 		jp4.setLayout(new GridLayout(0, 1, 2, 5));
-		
+		jp4.setBackground(Color.orange);
 		jp4.add(jbtnCancel);
 		jp4.add(jbtnEnter);  
-		
-		
 		
 		jbtnClear1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent ae){
