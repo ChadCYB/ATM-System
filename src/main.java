@@ -9,12 +9,11 @@ public class main {
 		aBank.addAccount(new Account("¤p¤E","A12608","b00002","453354",
 				new BankAccount("231897",13534,1200)));
 		LogInFrame loginFrame = new LogInFrame(login, atm1);
+		loginFrame.setVisible(true);
 		do{
 			System.out.print("");
 		}while(!loginFrame.status());
 //		System.out.println("status: login success");
 		MainFrame1 mFrame1 = new MainFrame1(atm1);
-		
 	}
-
 }
