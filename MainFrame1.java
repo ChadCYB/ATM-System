@@ -1,7 +1,5 @@
-
+package asd;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.*; 
 public class MainFrame1 {
@@ -12,10 +10,7 @@ public class MainFrame1 {
 	static Button Check=new Button("¬d¿ú");
 	static Button Break=new Button("°h¥X");
 	
-	public MainFrame1(ATM atm1){
-		MainFrame2();
-	}
-	private void MainFrame2(){
+	public static void main(String[] args){
 		jfrm.setLayout(null);
 		jfrm.setSize(500,500);
 		jfrm.setLocation(300,100);
@@ -27,27 +22,6 @@ public class MainFrame1 {
 		SaveMoney.setBounds(245,300,240,70);
 		Check.setBounds(0,380,240,70);
 		Break.setBounds(245,380,240,70);
-		
-		Receive.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent ae){
-				
-			}
-		});
-		SaveMoney.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent ae){
-				
-			}
-		});
-		Check.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent ae){
-				
-			}
-		});
-		Break.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent ae){
-				
-			}
-		});
 		
 		jfrm.add(welcome);
 		jfrm.add(Receive);
