@@ -13,6 +13,6 @@ public class main {
 			System.out.print("");
 		}while(!loginFrame.status());
 		
-		//MainFrame1 mFrame1 = new MainFrame1(atm1);
+		MainFrame1 mFrame1 = new MainFrame1(atm1);
 	}
 }

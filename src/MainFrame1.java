@@ -1,16 +1,16 @@
 
 import java.awt.*;
-
 import javax.swing.*; 
+
 public class MainFrame1 {
-	static JFrame jfrm=new JFrame("MainFrame1");
-	static Label welcome=new Label("welcome");
-	static Button Receive=new Button("領錢");
-	static Button SaveMoney=new Button("存錢");
-	static Button Check=new Button("查錢");
-	static Button Break=new Button("退出");
+	private JFrame jfrm=new JFrame("MainFrame1");
+	private Label welcome=new Label("welcome");
+	private Button Receive=new Button("領錢");
+	private Button SaveMoney=new Button("存錢");
+	private Button Check=new Button("查錢");
+	private Button Break=new Button("退出");
 	
-	public static void main(String[] args){
+	public MainFrame1(ATM atm){
 		jfrm.setLayout(null);
 		jfrm.setSize(500,500);
 		jfrm.setLocation(300,100);
