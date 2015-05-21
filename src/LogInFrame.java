@@ -55,7 +55,7 @@ public class LogInFrame extends JFrame {
 		this.setTitle("LogIn");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(true);
-		setBounds(300,300,500,500);
+		setBounds(300,300,700,400);
 		cp = this.getContentPane();
 		cp.setLayout(new BorderLayout());		
 		cp.add(jp1,BorderLayout.NORTH);
