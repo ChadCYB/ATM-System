@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -13,6 +12,8 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 public class LogInFrame extends JFrame {
 	public LogInFrame(LogIn login, ATM atm){
@@ -44,18 +45,18 @@ public class LogInFrame extends JFrame {
 	private JPanel jp2 = new JPanel();
 	private JPanel jp3 = new JPanel();
 	private JPanel jp4 = new JPanel();
-	private boolean tt = false;
+//	private boolean tt = false;
 	
-	public boolean status(){
-		return tt;
-	}
+//	public boolean status(){
+//		return tt;
+//	}
 	
 	private void initComp(final LogIn login, final ATM atm){
 		setVisible(true);
 		this.setTitle("LogIn");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(true);
-		setBounds(300,300,700,400);
+		setBounds(300,300,500,400);
 		cp = this.getContentPane();
 		cp.setLayout(new BorderLayout());		
 		cp.add(jp1,BorderLayout.NORTH);
@@ -114,7 +115,8 @@ public class LogInFrame extends JFrame {
 				if(login.findAccount()){								
 					JOptionPane.showMessageDialog(null,"Welcome "+login.getUserName()+" !");
 					atm.setAccUser(sAcc, new String(jpfPass.getPassword()));
-					tt = true;
+					MainFrame1 mFrame1 = new MainFrame1(atm);
+//					tt = true;
 					dispose();											//Ãö³¬µøµ¡
 				}else{
 					JOptionPane.showMessageDialog(null,"Ops! "+sAcc+" please try again!");
