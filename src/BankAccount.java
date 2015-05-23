@@ -1,3 +1,4 @@
+
 public class BankAccount{
 	private String bankID;				//原存行
 	private double Balance,Deposit;		//帳戶餘額,帳戶定存

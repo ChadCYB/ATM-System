@@ -1,13 +1,15 @@
+/*	Class: MainFrame1
+ * 	Fuction: 主功能視窗
+ */
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.awt.event.WindowStateListener;
-
 import javax.swing.*; 
 import javax.swing.UIManager.LookAndFeelInfo;
+
 public class MainFrame1 extends JFrame{
 	private Label welcome=new Label("welcome");
 	private Button Receive=new Button("領錢");

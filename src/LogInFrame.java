@@ -1,3 +1,7 @@
+/*	Class: LogInFrame
+ * 	Fuction: µn¤Jµøµ¡
+ */
+
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.EventQueue;
@@ -7,7 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JFrame;
@@ -15,8 +18,6 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
-import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
 
 public class LogInFrame extends JFrame {
 	public LogInFrame(LogIn login, ATM atm){

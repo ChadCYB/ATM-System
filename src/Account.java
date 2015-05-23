@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 public class Account extends Customer{
 	private BankAccount bankAcc = new BankAccount();	//ª»¶Ê§·¿Y

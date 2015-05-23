@@ -10,9 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.sql.Connection;
-
 //import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
+//import com.mysql.jdbc.Statement;
 
 public class Bank {
 	private ArrayList<Account> accountArr = new ArrayList<Account>();
