@@ -1,5 +1,10 @@
+/*	Class: CheckMoneyFrame
+ * 	Fuction: 쩊�{─(�{─턨プ헕)
+ */
+
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
+
 public class main {
 	public static void main(String[] args) {
 		try {

@@ -1,7 +1,7 @@
 
 public class ATM {
 	private Bank theBank;
-	private Account currentAcc;
+//	private Account currentAcc;
 	private String aID, aPIN;
 	public ATM(Bank bank){
 		theBank = bank;
@@ -13,7 +13,7 @@ public class ATM {
 		return theBank.saveMoney(aID, aPIN, money);
 	}
 	public boolean fdMoney(){					//©w¦s
-		return false;
+		return false;	//<<<<NOT YET
 	}
 	public boolean moneyTransfer(double money, String TrfInID){		//¶×´Ú
 		return theBank.moneyTrf(aID, aPIN, money, TrfInID);

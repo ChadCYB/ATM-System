@@ -1,18 +1,22 @@
+/*	Class: MainFrame1
+ * 	Fuction: 主功能視窗
+ */
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import javax.swing.*; 
 import javax.swing.UIManager.LookAndFeelInfo;
+
 public class MainFrame1 extends JFrame{
 	private Label welcome=new Label("welcome");
 	private Button Receive=new Button("領錢");
 	private Button SaveMoney=new Button("存錢");
 	private Button Check=new Button("查錢");
 	private Button Break=new Button("退出");
-//	private boolean tt = true;
-	
+	private int Height = 500, Width = 500;
 	public MainFrame1(ATM atm){
 		try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -26,19 +30,14 @@ public class MainFrame1 extends JFrame{
 		}
 		initComp(atm);
 	}
-	
-//	public boolean status(){
-//		return tt;
-//	}
 
-	
-	private void initComp(ATM atm){
+	private void initComp(final ATM atm){
 		setVisible(true);
 		this.setTitle("ATM System");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 			//X可以按
-		
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);	//僅關閉此視窗
 		this.setLayout(null);
-		this.setBounds(300, 300, 500, 500);
+		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		this.setBounds((int)((screenSize.getWidth()-Width)*0.5), (int)((screenSize.getHeight()-Height)*0.5), Width, Height);
 		welcome.setBounds(170, 50, 200, 200);
 		welcome.setFont(new Font("Serief",Font.ITALIC+Font.BOLD,30));	//字體斜邊+粗體+30字
 		
@@ -65,14 +64,49 @@ public class MainFrame1 extends JFrame{
 		});
 		Check.addActionListener(new ActionListener(){		//查錢
 			public void actionPerformed(ActionEvent ae){
-				CheckMoneyFrame ckmoneyFrame = new CheckMoneyFrame(atm);
+				final CheckMoneyFrame ckmoneyFrame = new CheckMoneyFrame(atm);
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							ckmoneyFrame.addWindowListener(new WindowListener(){
+								public void windowClosed(WindowEvent arg0) {		//視窗關閉後
+									if(ckmoneyFrame.status()){
+										dispose();
+									}else{
+										setVisible(true);
+									}
+								}
+								public void windowActivated(WindowEvent arg0) {		//焦點視窗
+									
+								}
+								public void windowClosing(WindowEvent arg0) {		//關閉視窗
+									ckmoneyFrame.dispose();									
+								}
+								public void windowDeactivated(WindowEvent arg0) {	//視窗失去焦點
+									
+								}
+								public void windowDeiconified(WindowEvent arg0) {	//視窗取消最小化
+									
+								}
+								public void windowIconified(WindowEvent arg0) {		//視窗最小化
+									
+								}
+								public void windowOpened(WindowEvent arg0) {		//開啟視窗
+									
+								}
+							});
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
 				setVisible(false);
 			}
 		});
 		Break.addActionListener(new ActionListener(){		//退出
 			public void actionPerformed(ActionEvent ae){
 				JOptionPane.showMessageDialog(null,"感謝使用，祝交易愉快  !");
-				System.exit(0);
+				dispose();									//關閉本視窗
 			}
 		});
 	}

@@ -5,17 +5,24 @@
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
+import java.sql.Connection;
+//import com.mysql.jdbc.Connection;
+//import com.mysql.jdbc.Statement;
 
 public class Bank {
 	private ArrayList<Account> accountArr = new ArrayList<Account>();
 	private Properties properties = new Properties();
+	private static final String DBDRIVER = "org.gjt.mm.mysql.Driver";
+
 	public Bank(){
 		String configFile = "config.properties";
 		try {
-			properties.load(new FileInputStream(configFile));
-		} catch (FileNotFoundException ex) {
+			properties.load(new FileInputStream(configFile));	//讀取設定檔
+		} catch (FileNotFoundException ex) {					//找不到檔案
 			ex.printStackTrace();
 			return;
 		} catch (IOException ex) {
@@ -33,6 +40,29 @@ public class Bank {
 		}
 		if(password.isEmpty()){								//password 未設定, 給預設值空字串
 			System.out.println("database passwd not set");
+		}
+		dataBaseConnect(host,username,password);
+	}
+	private void dataBaseConnect(String host, String user, String passwd){		//資料庫
+		Connection dbConn = null;							//資料庫連結
+		try {
+			Class.forName(DBDRIVER);						//載入驅動程式
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		try{
+			dbConn = DriverManager.getConnection(host,user,passwd);		//連結資料庫(URL,user,passwd)
+//			Statement stm = dbConn.creatStatement();
+		}catch (SQLException ex){
+			ex.printStackTrace();
+		}
+		System.out.println(dbConn);
+		
+		try {
+			dbConn.close();									//段開資料庫
+		}catch (SQLException ex){
+			ex.printStackTrace();
 		}
 	}
 	private boolean accIsExist(String aID){					//帳號使否存在
