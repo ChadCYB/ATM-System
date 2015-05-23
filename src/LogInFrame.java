@@ -1,9 +1,12 @@
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -45,16 +48,11 @@ public class LogInFrame extends JFrame {
 	private JPanel jp2 = new JPanel();
 	private JPanel jp3 = new JPanel();
 	private JPanel jp4 = new JPanel();
-//	private boolean tt = false;
-	
-//	public boolean status(){
-//		return tt;
-//	}
-	
+
 	private void initComp(final LogIn login, final ATM atm){
 		setVisible(true);
 		this.setTitle("LogIn");
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);		//關閉整個程式
 		this.setResizable(true);
 		setBounds(300,300,500,400);
 		cp = this.getContentPane();
@@ -112,12 +110,43 @@ public class LogInFrame extends JFrame {
 				String sAcc = jtfAcc.getText();
 				login.setAcc(sAcc);										
 				login.setPassWD(new String(jpfPass.getPassword()));		
-				if(login.findAccount()){								
+				if(login.findAccount()){
 					JOptionPane.showMessageDialog(null,"Welcome "+login.getUserName()+" !");
 					atm.setAccUser(sAcc, new String(jpfPass.getPassword()));
-					MainFrame1 mFrame1 = new MainFrame1(atm);
-//					tt = true;
-					dispose();											//關閉視窗
+					final MainFrame1 mFrame1 = new MainFrame1(atm);
+					EventQueue.invokeLater(new Runnable() {
+						public void run() {
+							try {
+								mFrame1.addWindowListener(new WindowListener(){
+									public void windowClosed(WindowEvent arg0) {		//視窗關閉後
+										setVisible(true);
+									}
+									public void windowActivated(WindowEvent arg0) {		//焦點視窗
+										
+									}
+									public void windowClosing(WindowEvent arg0) {		//關閉視窗
+										mFrame1.dispose();
+										mFrame1.setVisible(false);
+									}
+									public void windowDeactivated(WindowEvent arg0) {	//視窗失去焦點
+										
+									}
+									public void windowDeiconified(WindowEvent arg0) {	//視窗取消最小化
+										
+									}
+									public void windowIconified(WindowEvent arg0) {		//視窗最小化
+										
+									}
+									public void windowOpened(WindowEvent arg0) {		//開啟視窗
+										
+									}
+								});
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+					});
+					setVisible(false);
 				}else{
 					JOptionPane.showMessageDialog(null,"Ops! "+sAcc+" please try again!");
 				}

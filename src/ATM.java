@@ -13,7 +13,7 @@ public class ATM {
 		return theBank.saveMoney(aID, aPIN, money);
 	}
 	public boolean fdMoney(){					//©w¦s
-		return false;
+		return false;	//<<<<NOT YET
 	}
 	public boolean moneyTransfer(double money, String TrfInID){		//¶×´Ú
 		return theBank.moneyTrf(aID, aPIN, money, TrfInID);
