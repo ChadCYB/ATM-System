@@ -35,6 +35,10 @@ public class CheckMoneyFrame extends JFrame {
 	public boolean status(){								//是否結束交易
 		return tt;
 	}
+	private void getDetail(ATM atm){
+		jlb2.setText(atm.checkMoney()[0]);
+		jlb4.setText(atm.checkMoney()[1]);
+	}
 	private void initComp(ATM atm) {
 		setVisible(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);	//僅關閉此視窗
@@ -47,20 +51,19 @@ public class CheckMoneyFrame extends JFrame {
 		cp.setBackground(Color.orange);
 		cp.add(jp1,BorderLayout.CENTER);
 		cp.add(jp2,BorderLayout.SOUTH);
+		getDetail(atm);
 		
 		jp1.setLayout(new GridLayout(2,2,5,5));
-		
 		jp1.add(jlb1);
 		jp1.add(jlb2);
 		jp1.add(jlb3);
 		jp1.add(jlb4);
 		
 		jp2.setLayout(new GridLayout(1,2,5,5));
-		
 		jp2.add(jbtnBack);
 		jp2.add(jbtnEXIT);
 		
-		jbtnBack.addActionListener(new ActionListener(){	//繼續交易
+				jbtnBack.addActionListener(new ActionListener(){	//繼續交易
 			public void actionPerformed(ActionEvent ae){
 //				<<<<<<<<<<<<<<<<MainFrame setVisible
 				dispose();
