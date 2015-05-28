@@ -1,7 +1,6 @@
 
 public class ATM {
 	private Bank theBank;
-//	private Account currentAcc;
 	private String aID, aPIN;
 	public ATM(Bank bank){
 		theBank = bank;

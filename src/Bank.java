@@ -10,12 +10,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Properties;
-//import com.mysql.jdbc.Connection;
 
 public class Bank {
-//	private ArrayList<Account> accountArr = new ArrayList<Account>();
 	private Properties properties = new Properties();
 	private static final String DBDRIVER = "org.gjt.mm.mysql.Driver";
 	private String host, username, password;
@@ -59,7 +56,6 @@ public class Bank {
 //				return rs;
 			}
 			stmt.close();									//操作關閉
-			System.out.println("stmt.close checkpoint");					//<<<<<checkpoint
 			dbConn.close();									//段開資料庫
 			System.out.println("dbConn.close checkpoint");					//<<<<<checkpoint
 		} catch (ClassNotFoundException e) {
@@ -83,15 +79,7 @@ public class Bank {
 		}
 	}
 */
-//	private int findAccount(String aID, String aPIN){		//尋找帳號位置
-//		int arrNum = 0;										//帳號於陣列位置
-//		for(Account i:accountArr){
-//			if(i.getAccID().equals(aID) && i.getAccPIN().equals(aPIN))
-//				return arrNum;
-//			arrNum++;
-//		}
-//		return -1;
-//	}
+
 	public boolean validate(String aID, String aPIN){		//帳號驗證
 		Connection dbConn = null;							//資料庫連結
 		Statement stmt = null;								//資料庫操作
@@ -113,7 +101,6 @@ public class Bank {
 			loginFlag = (count == 1) ? true:false;
 			rs.close();
 			stmt.close();									//操作關閉
-			System.out.println("stmt.close val checkpoint");					//<<<<<checkpoint
 			dbConn.close();									//段開資料庫
 			System.out.println("dbConn.close val checkpoint");					//<<<<<checkpoint
 		} catch (ClassNotFoundException e) {
@@ -123,9 +110,7 @@ public class Bank {
 		}
 		return loginFlag;									//回傳查詢資料
 	}
-//	private Account getAccount(String aID, String aPIN){	//取得帳號
-//		return accountArr.get(findAccount(aID, aPIN));
-//	}
+
 	public String getAccName(String aID, String aPIN){		//取得帳號用戶名稱
 		Connection dbConn = null;							//資料庫連結
 		Statement stmt = null;								//資料庫操作
@@ -133,9 +118,8 @@ public class Bank {
 		String name;
 		String sql = 
 			("SELECT Name FROM tCustomer JOIN tAccount "
-				+ "ON tAccount.CustomerID = tCustomer.CustomerID "
-				+ "WHERE AccID = \"" +aID+ "\"");
-			//SELECT Name FROM tCustomer,tAccount WHERE AccID = "A10546" AND tAccount.CustomerID = tCustomer.CustomerID;
+			+ "ON tAccount.CustomerID = tCustomer.CustomerID "
+			+ "WHERE AccID = \"" +aID+ "\"");
 		try {
 			Class.forName(DBDRIVER);						//載入驅動程式
 			dbConn = DriverManager.getConnection(host,username,password);		//連結資料庫(URL,user,passwd)
@@ -145,7 +129,6 @@ public class Bank {
 			rs.next();										//rs指標指向第一個(不然預設是指向null)
 			name = rs.getString("Name");
 			stmt.close();									//操作關閉
-			System.out.println("stmt.close val checkpoint");					//<<<<<checkpoint
 			dbConn.close();									//段開資料庫
 			System.out.println("dbConn.close val checkpoint");					//<<<<<checkpoint
 			return name;
@@ -157,9 +140,7 @@ public class Bank {
 			return null;
 		}
 	}
-//	public void addAccount(Account account){				//新增帳號
-//		accountArr.add(account);
-//	}
+
 	public String[] checkMoney(String aID, String aPIN){					//查看餘額
 		String[] data = new String[2];
 		Connection dbConn = null;
@@ -176,12 +157,11 @@ public class Bank {
 			System.out.println(dbConn);						//<<<Check Point
 			stmt = dbConn.createStatement();				//建例實體Statement物件
 			rs = stmt.executeQuery(sql);					//執行SQL操作
-			//rs.next();										//rs指標指向第一個(不然預設是指向null)
+			rs.next();										//rs指標指向第一個(不然預設是指向null)
 			data[0] = rs.getString("BankAccID");
 			data[1] = rs.getString("Balance");
 			rs.close();
 			stmt.close();									//操作關閉
-			System.out.println("stmt.close val checkpoint");					//<<<<<checkpoint
 			dbConn.close();									//段開資料庫
 			System.out.println("dbConn.close val checkpoint");					//<<<<<checkpoint
 		}catch (ClassNotFoundException e){
@@ -199,11 +179,9 @@ public class Bank {
 		Connection dbConn = null;							//資料庫連結
 		Statement stmt = null;								//資料庫操作
 		String sql = 
-			("UPDATE tBankAccount SET Balance = Balance - " + money +
-			"WHERE BankAccID = ( SELECT * FROM tAccount WHERE AccID = \"" +aID+ "\" AND PIN = \""+ aPIN +"\"");
-		//	UPDATE tBankAccount
-		//	SET Balance = Balance - 2000
-		//	WHERE BankAccID = (SELECT BankAccID FROM tAccount WHERE AccID = "A10546" AND PIN = "458712");
+			("UPDATE tBankAccount"
+			+" SET Balance = Balance - " + money
+			+" WHERE BankAccID = ( SELECT * FROM tAccount WHERE AccID = \"" +aID+ "\" AND PIN = \""+ aPIN +"\"");
 		try {
 			Class.forName(DBDRIVER);						//載入驅動程式
 			dbConn = DriverManager.getConnection(host,username,password);		//連結資料庫(URL,user,passwd)
@@ -225,32 +203,7 @@ public class Bank {
 	}
 
 	public boolean saveMoney(String aID, String aPIN, double money){		//存錢
-		boolean tt = false;
-		Connection dbConn = null;							//資料庫連結
-		Statement stmt = null;								//資料庫操作
-		String sql = 
-			("UPDATE tBankAccount SET Balance = Balance + " + money
-			+"WHERE BankAccID = ( SELECT * FROM tAccount WHERE AccID = \"" +aID+ "\" AND PIN = \""+ aPIN +"\"");
-		//	UPDATE tBankAccount
-		//	SET Balance = Balance - 2000
-		//	WHERE BankAccID = (SELECT BankAccID FROM tAccount WHERE AccID = "A10546" AND PIN = "458712");
-		try {
-			Class.forName(DBDRIVER);						//載入驅動程式
-			dbConn = DriverManager.getConnection(host,username,password);		//連結資料庫(URL,user,passwd)
-			System.out.println(dbConn);						//<<<Check Point
-			stmt = dbConn.createStatement();				//建例實體Statement物件
-			stmt.executeUpdate(sql);						//執行SQL更新操作
-			tt = true;
-			stmt.close();									//操作關閉
-			System.out.println("stmt.close val checkpoint");					//<<<<<checkpoint
-			dbConn.close();									//段開資料庫
-			System.out.println("dbConn.close val checkpoint");					//<<<<<checkpoint
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return tt;
+		return this.pickUpMoney(aID, aPIN, -money);
 	}
 /*
 	public boolean moneyTrf(String aID, String aPIN, double money, String trfInID){		//匯款
