@@ -4,88 +4,97 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>60</x>
-      <y>50</y>
-      <w>310</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>LogIn
---
--LogIn(String,String)
--boolean: checkAccount(String, String)
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>60</x>
-      <y>190</y>
-      <w>310</w>
-      <h>130</h>
+      <x>20</x>
+      <y>370</y>
+      <w>230</w>
+      <h>370</h>
     </coordinates>
     <panel_attributes>Bank
 --
 _-Bank(String,String)_
 -ArrayList&lt;Account&gt; accountArr
--ArrayList&lt;BankAccount&gt; bankAccArr
--boolean: findAccount(String, String)
--Account: getAccount(String, String)
--BankAccount: getBankAccount(Account)
+-Properties properties
+-String: configFile
+-String: DBDRIVER
+-String: host
+-String: username
+-String: password
+-String: getProperty()
+-ResultSet dataBaseSearch
+-Connection: dbConn
+-Statement: stmt
+-ResultSet: rs
+-Connection: getConnection()
+-Connection: createStatement()
+-ResultSet: executeQuery(sql)
+-boolean: accIsExist(String)
+-boolean: validate(String, String)
+-String: getAccName(String, String)
+-String: sql
+-addAccount(Account account)
+
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>60</x>
-      <y>360</y>
-      <w>310</w>
-      <h>130</h>
+      <x>20</x>
+      <y>250</y>
+      <w>230</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>ATM
 --
-_-ATM(Account,BankAccount)_
--double: getMoney()
--boolean: pickUpMoney(double)
--boolean: saveMoney(double)
--boolean: transferMoney(String)
--String: showCustomer()</panel_attributes>
+_-ATM(Bank bank)_
+-String: aID
+-String: aPIN
+-boolean: fdMoney()
+-setAccUser()
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>390</x>
-      <y>50</y>
-      <w>310</w>
-      <h>120</h>
+      <x>20</x>
+      <y>30</y>
+      <w>230</w>
+      <h>210</h>
     </coordinates>
     <panel_attributes>Account
 --
 _-Account()_
 -String: AccID
--String: PIN
+-String: AccPIN
 -Coustumer: coustumer
--String: bankAccID
-</panel_attributes>
+-BankAccount: bankAcc
+-setAccID()
+-setAccPIN()
+-setBankAccount()
+-String: getAccID()
+-String: getAccPIN()
+-String: getBankAccount()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>390</x>
-      <y>190</y>
-      <w>310</w>
-      <h>150</h>
+      <x>20</x>
+      <y>750</y>
+      <w>230</w>
+      <h>190</h>
     </coordinates>
     <panel_attributes>BankAccount
 --
 _-BankAccount()_
+-String: bankid
 -double: balance
 -double: deposit
+-setbankID()
 -setBalance()
 -setDeposit()
+-Stirng: getbankID()
 -double: getBalance()
 -double: getDeposit()</panel_attributes>
     <additional_attributes/>
@@ -93,10 +102,10 @@ _-BankAccount()_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>390</x>
-      <y>360</y>
-      <w>310</w>
-      <h>120</h>
+      <x>270</x>
+      <y>480</y>
+      <w>280</w>
+      <h>240</h>
     </coordinates>
     <panel_attributes>Customer
 --
@@ -104,7 +113,207 @@ _-Customer()_
 -String: Name
 -String: Tel
 -String: Address
--String: idNum</panel_attributes>
+-String: idNum
+-setName()
+-setID()
+-setAddress()
+-setTel()
+-String: getName()
+-String: getID()
+-String: getAddress()
+-String: getTel()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>270</x>
+      <y>730</y>
+      <w>280</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Encryption
+--
+-Encryption()
+-String: TransactSQLInjection()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>570</x>
+      <y>30</y>
+      <w>280</w>
+      <h>590</h>
+    </coordinates>
+    <panel_attributes>LogInFrame
+--
+-LogInFrame(LogIn login, ATM atm)
+-JButton: jbtnClear1
+-JButton: jbtnClear2
+-JLabel: jlb1
+-JLabel: jlb2
+-JTextField: jtfAcc
+-JPasswordField: jpfPass
+-JButton: jbtnNumber1
+-JButton: jbtnNumber2
+-JButton: jbtnNumber3
+-JButton: jbtnNumber4
+-JButton: jbtnNumber5
+-JButton: jbtnNumber6
+-JButton: jbtnNumber7
+-JButton: jbtnNumber8
+-JButton: jbtnNumber9
+-JButton: jbtnNumbera
+-JButton: jbtnNumber0
+-JButton: jbtnNumberb
+-JButton: jbtnCancel
+-JButton: jbtnEnter
+-Container: cp
+-JPanel: jp1
+-JPanel: jp2
+-JPanel: jp3
+-JPanel: jp4
+-setVisible()
+-setTitle()
+-setResizable()
+-setBounds(Int,Int,Int,Int)
+-Container: getContentPane()
+-Container: setLayout(new BorderLayout())
+-Container: setBackground()
+-Container: (jp1,BorderLayout.NORTH)
+-Container: (jp2,BorderLayout.CENTER)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>270</x>
+      <y>800</y>
+      <w>280</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>LogIn
+--
+-LogIn(String,String)
+-String: aID
+-String: aPIN
+-Bank: theBank
+-setAcc()
+-setPassWD()
+-boolean: findAccount()
+-String: getUserName()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>570</x>
+      <y>630</y>
+      <w>280</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>main
+--
+-main()
+-getInstalledLookAndFeels()
+-String: getName()
+-setLookAndFeel()
+-String: getClassName()
+-Bank: aBank
+-LogIn; login
+-ATM: atm1
+-aBank: addAccount()
+-LogInFrame: loginFrame
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>870</x>
+      <y>30</y>
+      <w>280</w>
+      <h>570</h>
+    </coordinates>
+    <panel_attributes>MainFrame1
+--
+-MainFrame1(ATM atm)
+-Label: welcome
+-Button: Receive
+-Button: SaveMoney
+-Button: Check
+-Button: Break
+-Int: Height, Width
+-String: getName()
+-setLookAndFeel()
+-String: getClassName()
+-initComp(ATM atm)
+-setVisible()
+-setTitle()
+-setDefaultCloseOperation()
+-setLayout()
+-setBounds(Int,Int,Int,Int)
+-Toolkit: getDefaultToolkit()
+-Toolkit: getScreenSize()
+-Int: getWidth(), getHeight()
+-welcome: setBounds(Int,Int,Int,Int)
+-welcome: setFont(String,Font,Int)
+-Receive: setBounds(Int,Int,Int,Int)
+-SaveMoney: setBounds(Int,Int,Int,Int)
+-Check: setBounds(Int,Int,Int,Int)
+-Break: setBounds(Int,Int,Int,Int)
+-Receive: addActionListener()
+-SaveMoney: addActionListener()
+-Check: addActionListener()
+-actionPerformed()
+-CheckMoneyFrame: ckmoneyFrame(atm)
+-EventQueue: invokeLater()
+-Runnable: run()
+-ckmoneyFrame: addWindowListener()
+-Break: addActionListener()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>270</x>
+      <y>30</y>
+      <w>280</w>
+      <h>440</h>
+    </coordinates>
+    <panel_attributes>CheckMoneyFrame
+--
+-CheckMoneyFrame(ATM atm)
+-JLabel: jlb1
+-JLabel: jlb2
+-JLabel: jlb3
+-JLabel: jlb4
+-JButton: jbtnBack
+-JButton: jbtnEXIT
+-Container: cp
+-JPanel: jp1
+-JPanel: jp2
+-Int: Height,Width
+-boolean: status()
+-initComp(ATM atm)
+-setDefaultCloseOperation()
+-setVisible()
+-setTitle()
+-setResizable()
+-setBounds(Int,Int,Int,Int)
+-Int: getWidth(), getHeight()
+-Container: getContentPane()
+-Container: setLayout(new BorderLayout())
+-Container: setBackground()
+-Container: (jp1,BorderLayout.CENTER)
+-Container: (jp2,BorderLayout.SOUTH)
+-setLayout()
+-addActionListener()
+</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
