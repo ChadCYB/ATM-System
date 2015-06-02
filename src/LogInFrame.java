@@ -31,7 +31,7 @@ public class LogInFrame extends JFrame implements ActionListener {
 	private JTextField jtfAcc = new JTextField("b00001");
 	private JPasswordField jpfPass = new JPasswordField("458712");
 
-	private JButton JButton[] = new JButton[12];
+	private JButton JButn[] = new JButton[12];
 	private JButton jbtnCancel = new JButton("Cancel");
 	private JButton jbtnEnter = new JButton("Enter");
 	private Container cp;
@@ -67,42 +67,18 @@ public class LogInFrame extends JFrame implements ActionListener {
 		jp3.setLayout(new GridLayout(0, 3, 4, 5));
 		jp3.setBackground(Color.orange);
 
-		for (int i = 0; i < 11; i++) {
-			JButton[i] = new JButton(i + "");
-		}
-		JButton[10] = new JButton("#");
-		JButton[11] = new JButton("*");
-		
-		int[] num = new int[12];
-		boolean[] bNum = new boolean[12];
-		for (int i = 0; i < num.length; i++) {
-			int rand = (int)(Math.random()*num.length);
-			if(bNum[rand]){
-				i--;
-			}else{
-				num[i] = rand;
-				bNum[rand] = true;
-			}
-		}
-		for (int i = 0; i < num.length; i++) {
-			jp3.add(JButton[num[i]]);
-		}
-
 		jp4.setLayout(new GridLayout(0, 1, 2, 5));
 		jp4.setBackground(Color.orange);
 		jp4.add(jbtnCancel);
 		jp4.add(jbtnEnter);
+		
 		// <--------------------------
-		JButton[1].addActionListener(this);
-		JButton[2].addActionListener(this);
-		JButton[3].addActionListener(this);
-		JButton[4].addActionListener(this);
-		JButton[5].addActionListener(this);
-		JButton[6].addActionListener(this);
-		JButton[7].addActionListener(this);
-		JButton[8].addActionListener(this);
-		JButton[9].addActionListener(this);
-		JButton[0].addActionListener(this);
+		for (int i = 0; i < JButn.length; i++) {
+			JButn[i] = new JButton();
+			JButn[i].addActionListener(this);
+			jp3.add(JButn[i]);
+		}
+		randJBTN();
 		// <--------------------------
 
 		jbtnClear1.addActionListener(new ActionListener() {
@@ -113,6 +89,11 @@ public class LogInFrame extends JFrame implements ActionListener {
 		jbtnClear2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				jpfPass.setText("");
+			}
+		});
+		jbtnCancel.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent ae){
+				randJBTN();
 			}
 		});
 		jbtnEnter.addActionListener(new ActionListener(){
@@ -129,6 +110,7 @@ public class LogInFrame extends JFrame implements ActionListener {
 							try {
 								mFrame1.addWindowListener(new WindowListener(){
 									public void windowClosed(WindowEvent arg0) {		//視窗關閉後
+										resetFrame();
 										setVisible(true);
 									}
 									public void windowActivated(WindowEvent arg0) {		//焦點視窗
@@ -163,11 +145,39 @@ public class LogInFrame extends JFrame implements ActionListener {
 			}
 		});
 	}
+	private void randJBTN(){
+		int[] num = new int[12];
+		boolean[] bNum = new boolean[12];
+		
 
+		for (int i = 0; i < num.length; i++) {
+			int rand = (int)(Math.random()*num.length);
+			if(bNum[rand]){
+				i--;
+			}else{
+				num[i] = rand;
+				bNum[rand] = true;
+			}
+		}
+		for (int i = 0; i < num.length; i++) {
+			if(num[i]<10){
+				JButn[i].setText(num[i] + "");
+			}else if(num[i]==10){
+				JButn[i].setText("#");
+			}else if(num[i]==11){
+				JButn[i].setText("*");
+			}
+		}
+	}
+	private void resetFrame() {
+		jtfAcc.setText("");
+		jpfPass.setText(""); 
+		randJBTN();
+	}
 	public void actionPerformed(ActionEvent e) { // 接收按鈕指令
 		JButton HitBtn = (JButton) e.getSource(); // 查詢來源
-		String str = jpfPass.getText();
-		jpfPass.setText(str + HitBtn.getText());
+//		String str = jpfPass.getText();
+		jpfPass.setText(jpfPass.getText() + HitBtn.getText());
 	}
 
 }
