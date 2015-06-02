@@ -16,7 +16,12 @@ public class MainFrame1 extends JFrame{
 	private Button SaveMoney=new Button("存錢");
 	private Button Check=new Button("查錢");
 	private Button Break=new Button("退出");
+	private Container cp = new Container();
+	private JPanel contentPane= new JPanel();
+	private JPanel jpwelcome = new JPanel();
+	private JPanel gridpanel = new JPanel();
 	private int Height = 500, Width = 500;
+	
 	public MainFrame1(ATM atm){
 		try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -35,17 +40,24 @@ public class MainFrame1 extends JFrame{
 		setVisible(true);
 		this.setTitle("ATM System");
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);	//僅關閉此視窗
-		this.setLayout(null);
+		//this.setLayout(null);
 		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		this.setBounds((int)((screenSize.getWidth()-Width)*0.5), (int)((screenSize.getHeight()-Height)*0.5), Width, Height);
-		welcome.setBounds(170, 50, 200, 200);
-		welcome.setFont(new Font("Serief",Font.ITALIC+Font.BOLD,30));	//字體斜邊+粗體+30字
-		
-		this.add(welcome);
-		this.add(Receive);
-		this.add(SaveMoney);
-		this.add(Check);
-		this.add(Break);
+	//	welcome.setBounds(170, 50, 200, 200);
+	//	welcome.setFont(new Font("Serief",Font.ITALIC+Font.BOLD,30));	//字體斜邊+粗體+30字
+
+		this.setContentPane(contentPane);
+		contentPane.setLayout(new GridLayout(0, 1, 2, 5));
+		welcome.setFont(new Font("Serief",Font.ITALIC+Font.BOLD,30));//字體斜邊+粗體+30字
+		gridpanel.setLayout(new GridLayout(0, 2, 2, 5));
+
+		contentPane.add(jpwelcome);
+		jpwelcome.add(welcome);
+		contentPane.add(gridpanel);
+		gridpanel.add(Receive);
+		gridpanel.add(SaveMoney);
+		gridpanel.add(Check);
+		gridpanel.add(Break);
 		
 		Receive.setBounds(0,300,240,70);
 		SaveMoney.setBounds(245,300,240,70);
