@@ -1,8 +1,5 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -13,14 +10,14 @@ import java.awt.event.ActionEvent;
 
 public class PickUpFrame extends JFrame {
 	private JPanel contentPane = new JPanel();
-	private JLabel Receive = new JLabel("é ˜éŒ¢;
+	private JLabel Receive = new JLabel("»â¿ú");
 	private JPanel gridpanel = new JPanel();
 	private JButton btn1 = new JButton("$1000");
 	private JButton btn2 = new JButton("$2000");
 	private JButton btn3 = new JButton("$3000");
 	private JButton btn5 = new JButton("$5000");
 	private JButton btn10 = new JButton("$10,000");
-	private JButton btntext = new JButton("è‡ªè¡Œè¼¸å…¥(åªæä¾›åƒå…ƒ)");
+	private JButton btntext = new JButton("¦Û¦æ¿é¤J(¥u´£¨Ñ¤d¤¸)");
 
 	public PickUpFrame(ATM atm) {
 		initComp(atm);
@@ -34,7 +31,7 @@ public class PickUpFrame extends JFrame {
 		contentPane.setLayout(new GridLayout(0, 1, 2, 5));
 		gridpanel.setLayout(new GridLayout(0, 2, 4, 5));
 		
-		Receive.setFont(new Font("æ–°ç´°æ˜é«”", Font.BOLD, 40));
+		Receive.setFont(new Font("·s²Ó©úÅé", Font.BOLD, 40));
 		Receive.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		contentPane.add(Receive);
