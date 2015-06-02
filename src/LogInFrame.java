@@ -1,7 +1,6 @@
 /*	Class: LogInFrame
- * 	Fuction: µn§Jµ¯µ°
+ * 	Fuction: ÁôªÂÖ•Ë¶ñÁ™ó
  */
-
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.EventQueue;
@@ -11,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JFrame;
@@ -19,31 +19,21 @@ import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 
-public class LogInFrame extends JFrame {
+public class LogInFrame extends JFrame implements ActionListener {
 	public LogInFrame(LogIn login, ATM atm){
 		initComp(login,atm);
 	}
-	
-	private JButton jbtnClear1=new JButton("Clear");
-	private JButton jbtnClear2=new JButton("Clear");
-	private JLabel jlb1=new JLabel("ID:");
-	private JLabel jlb2=new JLabel("PIN:");
-	private JTextField jtfAcc=new JTextField("b00001");
-	private JPasswordField jpfPass=new JPasswordField("458712");
-	private JButton jbtnNumber1=new JButton("1");
-	private JButton jbtnNumber2=new JButton("2");
-	private JButton jbtnNumber3=new JButton("3");
-	private JButton jbtnNumber4=new JButton("4");
-	private JButton jbtnNumber5=new JButton("5");
-	private JButton jbtnNumber6=new JButton("6");
-	private JButton jbtnNumber7=new JButton("7");
-	private JButton jbtnNumber8=new JButton("8");
-	private JButton jbtnNumber9=new JButton("9");
-	private JButton jbtnNumbera=new JButton("");
-	private JButton jbtnNumber0=new JButton("0");
-	private JButton jbtnNumberb=new JButton("");
-	private JButton jbtnCancel=new JButton("Cancel");
-	private JButton jbtnEnter=new JButton("Enter");
+
+	private JButton jbtnClear1 = new JButton("Clear");
+	private JButton jbtnClear2 = new JButton("Clear");
+	private JLabel jlb1 = new JLabel("ID:");
+	private JLabel jlb2 = new JLabel("PIN:");
+	private JTextField jtfAcc = new JTextField("b00001");
+	private JPasswordField jpfPass = new JPasswordField("458712");
+
+	private JButton JButton[] = new JButton[12];
+	private JButton jbtnCancel = new JButton("Cancel");
+	private JButton jbtnEnter = new JButton("Enter");
 	private Container cp;
 	private JPanel jp1 = new JPanel();
 	private JPanel jp2 = new JPanel();
@@ -53,59 +43,78 @@ public class LogInFrame extends JFrame {
 	private void initComp(final LogIn login, final ATM atm){
 		setVisible(true);
 		this.setTitle("LogIn");
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);		//√ˆ≥¨æ„≠”µ{¶°
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE); // ÈóúÈñâÊï¥ÂÄãÁ®ãÂºè
 		this.setResizable(true);
-		setBounds(300,300,500,400);
+		setBounds(300, 300, 500, 400);
 		cp = this.getContentPane();
-		cp.setLayout(new BorderLayout());		
-		cp.add(jp1,BorderLayout.NORTH);
-		cp.add(jp2,BorderLayout.CENTER);
-		
-		jp1.setLayout(new GridLayout(0,3,2,5));
-		jp1.setBackground(new Color(180,240,245));
+		cp.setLayout(new BorderLayout());
+		cp.add(jp1, BorderLayout.NORTH);
+		cp.add(jp2, BorderLayout.CENTER);
+
+		jp1.setLayout(new GridLayout(0, 3, 2, 5));
+		jp1.setBackground(new Color(180, 240, 245));
 		jp1.add(jlb1);
 		jp1.add(jtfAcc);
 		jp1.add(jbtnClear1);
 		jp1.add(jlb2);
 		jp1.add(jpfPass);
 		jp1.add(jbtnClear2);
-		
+
 		jp2.setLayout(new BorderLayout());
-		jp2.add(jp3,BorderLayout.CENTER);
-		jp2.add(jp4,BorderLayout.EAST);
-		
+		jp2.add(jp3, BorderLayout.CENTER);
+		jp2.add(jp4, BorderLayout.EAST);
+
 		jp3.setLayout(new GridLayout(0, 3, 4, 5));
 		jp3.setBackground(Color.orange);
-		jp3.add(jbtnNumber1);
-		jp3.add(jbtnNumber2);
-		jp3.add(jbtnNumber3);
-		jp3.add(jbtnNumber4);
-		jp3.add(jbtnNumber5);
-		jp3.add(jbtnNumber6);
-		jp3.add(jbtnNumber7);
-		jp3.add(jbtnNumber8);
-		jp3.add(jbtnNumber9);
-		jp3.add(jbtnNumbera);
-		jp3.add(jbtnNumber0);
-		jp3.add(jbtnNumberb);
+
+		for (int i = 0; i < 11; i++) {
+			JButton[i] = new JButton(i + "");
+		}
+		JButton[10] = new JButton("#");
+		JButton[11] = new JButton("*");
 		
+		int[] num = new int[12];
+		boolean[] bNum = new boolean[12];
+		for (int i = 0; i < num.length; i++) {
+			int rand = (int)(Math.random()*num.length);
+			if(bNum[rand]){
+				i--;
+			}else{
+				num[i] = rand;
+				bNum[rand] = true;
+			}
+		}
+		for (int i = 0; i < num.length; i++) {
+			jp3.add(JButton[num[i]]);
+		}
+
 		jp4.setLayout(new GridLayout(0, 1, 2, 5));
 		jp4.setBackground(Color.orange);
 		jp4.add(jbtnCancel);
-		jp4.add(jbtnEnter);  
-		
-		jbtnClear1.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent ae){
+		jp4.add(jbtnEnter);
+		// <--------------------------
+		JButton[1].addActionListener(this);
+		JButton[2].addActionListener(this);
+		JButton[3].addActionListener(this);
+		JButton[4].addActionListener(this);
+		JButton[5].addActionListener(this);
+		JButton[6].addActionListener(this);
+		JButton[7].addActionListener(this);
+		JButton[8].addActionListener(this);
+		JButton[9].addActionListener(this);
+		JButton[0].addActionListener(this);
+		// <--------------------------
+
+		jbtnClear1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
 				jtfAcc.setText("");
 			}
 		});
-		
-		jbtnClear2.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent ae){
+		jbtnClear2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
 				jpfPass.setText("");
 			}
 		});
-		
 		jbtnEnter.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent ae){
 				String sAcc = jtfAcc.getText();
@@ -119,26 +128,26 @@ public class LogInFrame extends JFrame {
 						public void run() {
 							try {
 								mFrame1.addWindowListener(new WindowListener(){
-									public void windowClosed(WindowEvent arg0) {		//µ¯µ°√ˆ≥¨´·
+									public void windowClosed(WindowEvent arg0) {		//Ë¶ñÁ™óÈóúÈñâÂæå
 										setVisible(true);
 									}
-									public void windowActivated(WindowEvent arg0) {		//µJ¬Iµ¯µ°
+									public void windowActivated(WindowEvent arg0) {		//ÁÑ¶ÈªûË¶ñÁ™ó
 										
 									}
-									public void windowClosing(WindowEvent arg0) {		//√ˆ≥¨µ¯µ°
+									public void windowClosing(WindowEvent arg0) {		//ÈóúÈñâË¶ñÁ™ó
 										mFrame1.dispose();
 										mFrame1.setVisible(false);
 									}
-									public void windowDeactivated(WindowEvent arg0) {	//µ¯µ°•¢•hµJ¬I
+									public void windowDeactivated(WindowEvent arg0) {	//Ë¶ñÁ™óÂ§±ÂéªÁÑ¶Èªû
 										
 									}
-									public void windowDeiconified(WindowEvent arg0) {	//µ¯µ°®˙Æ¯≥Ã§p§∆
+									public void windowDeiconified(WindowEvent arg0) {	//Ë¶ñÁ™óÂèñÊ∂àÊúÄÂ∞èÂåñ
 										
 									}
-									public void windowIconified(WindowEvent arg0) {		//µ¯µ°≥Ã§p§∆
+									public void windowIconified(WindowEvent arg0) {		//Ë¶ñÁ™óÊúÄÂ∞èÂåñ
 										
 									}
-									public void windowOpened(WindowEvent arg0) {		//∂}±“µ¯µ°
+									public void windowOpened(WindowEvent arg0) {		//ÈñãÂïüË¶ñÁ™ó
 										
 									}
 								});
@@ -153,7 +162,12 @@ public class LogInFrame extends JFrame {
 				}
 			}
 		});
-				
+	}
+
+	public void actionPerformed(ActionEvent e) { // Êé•Êî∂ÊåâÈàïÊåá‰ª§
+		JButton HitBtn = (JButton) e.getSource(); // Êü•Ë©¢‰æÜÊ∫ê
+		String str = jpfPass.getText();
+		jpfPass.setText(str + HitBtn.getText());
 	}
 
 }
