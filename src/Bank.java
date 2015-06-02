@@ -102,7 +102,7 @@ public class Bank {
 			rs.close();
 			stmt.close();									//操作關閉
 			dbConn.close();									//段開資料庫
-			System.out.println("dbConn.close val checkpoint");					//<<<<<checkpoint
+			System.out.println("<dbConn.close val>");					//<<<<<checkpoint
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -130,7 +130,7 @@ public class Bank {
 			name = rs.getString("Name");
 			stmt.close();									//操作關閉
 			dbConn.close();									//段開資料庫
-			System.out.println("dbConn.close val checkpoint");					//<<<<<checkpoint
+			System.out.println("<dbConn.close val>");					//<<<<<checkpoint
 			return name;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -150,6 +150,9 @@ public class Bank {
 			("SELECT tBankAccount.BankAccID,Balance FROM tBankAccount JOIN tAccount "
 			+ "ON tBankAccount.BankAccID = tAccount.BankAccID "
 			+ "WHERE AccID = '" +aID+ "' AND PIN = '"+ aPIN +"'");
+//		SELECT tBankAccount.BankAccID,Balance FROM tBankAccount JOIN tAccount 
+//		ON tBankAccount.BankAccID = tAccount.BankAccID 
+//				WHERE AccID = 'A10546' AND PIN = '458712';
 		System.out.println(sql);
 		try{
 			Class.forName(DBDRIVER);
@@ -163,7 +166,7 @@ public class Bank {
 			rs.close();
 			stmt.close();									//操作關閉
 			dbConn.close();									//段開資料庫
-			System.out.println("dbConn.close val checkpoint");					//<<<<<checkpoint
+			System.out.println("<dbConn.close val>");					//<<<<<checkpoint
 		}catch (ClassNotFoundException e){
 			e.printStackTrace();
 			data[0] = "Error";
@@ -191,7 +194,7 @@ public class Bank {
 			stmt.close();									//操作關閉
 			System.out.println("stmt.close val checkpoint");					//<<<<<checkpoint
 			dbConn.close();									//段開資料庫
-			System.out.println("dbConn.close val checkpoint");					//<<<<<checkpoint
+			System.out.println("<dbConn.close val>");					//<<<<<checkpoint
 			return true;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
