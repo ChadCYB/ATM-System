@@ -1,42 +1,48 @@
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 class TransferFrame extends JFrame implements ActionListener{
-		private JPanel contentPane;
-		private JLabel Transfer_Account,Money ;
-		private JTextField txtTransfer_Account,txtMoney ;
-		private JButton Confirm,Cancel;
+		private JPanel contentPane = new JPanel();
+		private JLabel Transfer_Account=new JLabel("Transfer Account");	//¿é¤JÂà±b±b¸¹¤å¦r(Åã¥Ü)
+		private JTextField txtTransfer_Account =new JTextField();		//¿é¤JÂà±b±b¸¹(¿é¤J°Ï)
+		private JLabel Money=new JLabel("Transfer Amount");				//¿é¤Jª÷ÃB¸¹¤å¦r(Åã¥Ü)
+		private JTextField txtMoney =new JTextField();					//¿é¤Jª÷ÃB (¿é¤J°Ï)
+		private JButton Confirm=new JButton("Confirm");					//½T»{«ö¶s
+		private JButton Cancel=new JButton("Cancel");					//¨ú®ø«ö¶s
 	
-	TransferFrame(){
+	public TransferFrame(){
+		initComp();
+	}
+	
+	private void initComp(){
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 469, 250);
-		contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(3,2,0,50));
 		
-		JLabel Transfer_Account=new JLabel("è¼¸å…¥è½‰å¸³å¸³è™Ÿ");   //è¼¸å…¥è½‰å¸³å¸³è™Ÿæ–‡å­—(é¡¯ç¤º)
 		contentPane.add(Transfer_Account);
-		
-		JTextField txtTransfer_Account =new JTextField();     //è¼¸å…¥é‡‘é¡ (è¼¸å…¥å€)
 		contentPane.add(txtTransfer_Account);
-		
-		JLabel Money=new JLabel("è¼¸å…¥é‡‘é¡");                  //è¼¸é‡‘é¡è™Ÿæ–‡å­—(é¡¯ç¤º)
 		contentPane.add(Money);
-		
-		JTextField txtMoney =new JTextField();                //è¼¸å…¥é‡‘é¡ (è¼¸å…¥å€)
 		contentPane.add(txtMoney);
-		
-		JButton Confirm=new JButton("Confirm");               //ç¢ºèªæŒ‰éˆ•
 		contentPane.add(Confirm);
-		Confirm.addActionListener(this);                      //æ”¾å…¥è«‹è½
-		
-		JButton Cancel=new JButton("Cancel");                 //å–æ¶ˆæŒ‰éˆ•
 		contentPane.add(Cancel);
-		Cancel.addActionListener(this);                       //æ”¾å…¥è«‹è½
+		
+		Confirm.addActionListener(this);						//©ñ¤J½ĞÅ¥
+		Cancel.addActionListener(this);							//©ñ¤J½ĞÅ¥
 		
 		setVisible(true);
-		
 	}
-	public void actionPerformed(ActionEvent e){	            //æ¸¬è©¦å€
-		JButton HitBtn=(JButton)e.getSource();                //çœ‹æ˜¯èª°è¢«å•Ÿå‹•çš„
-		JOptionPane.showMessageDialog(null, HitBtn.getText());
+	public void actionPerformed(ActionEvent e){					//½ĞÅ¥¾¹
+		JButton HitBtn=(JButton)e.getSource();					//¬İ¬O½Ö³Q±Ò°Êªº
+		JOptionPane.showMessageDialog(null, HitBtn.getText());	//´ú¸Õ
 
 	}
 }

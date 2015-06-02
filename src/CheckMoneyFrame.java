@@ -63,9 +63,9 @@ public class CheckMoneyFrame extends JFrame {
 		jp2.add(jbtnBack);
 		jp2.add(jbtnEXIT);
 		
-				jbtnBack.addActionListener(new ActionListener(){	//繼續交易
+		jbtnBack.addActionListener(new ActionListener(){	//繼續交易
 			public void actionPerformed(ActionEvent ae){
-//				<<<<<<<<<<<<<<<<MainFrame setVisible
+				//<<<<<<<<<<<<<<<<MainFrame setVisible
 				dispose();
 			}
 		});
