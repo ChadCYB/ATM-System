@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+
 import javax.swing.*; 
 import javax.swing.UIManager.LookAndFeelInfo;
 
@@ -70,6 +71,7 @@ public class MainFrame1 extends JFrame{
 							pkFrame.addWindowListener(new WindowListener(){
 								public void windowClosed(WindowEvent arg0) {		//視窗關閉後
 									if(pkFrame.status()){
+										JOptionPane.showMessageDialog(null,"感謝使用，祝交易愉快  !");
 										dispose();
 									}else{
 										setVisible(true);
@@ -106,6 +108,7 @@ public class MainFrame1 extends JFrame{
 							ckMoneyFrame.addWindowListener(new WindowListener(){
 								public void windowClosed(WindowEvent arg0) {		//視窗關閉後
 									if(ckMoneyFrame.status()){
+										JOptionPane.showMessageDialog(null,"感謝使用，祝交易愉快  !");
 										dispose();
 									}else{
 										setVisible(true);

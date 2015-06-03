@@ -5,10 +5,12 @@
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -52,6 +54,10 @@ public class CheckMoneyFrame extends JFrame {
 		cp.add(jp1,BorderLayout.CENTER);
 		cp.add(jp2,BorderLayout.SOUTH);
 		getDetail(atm);
+		jlb1.setFont(new Font("TimesRoman",Font.PLAIN ,25) );
+		jlb2.setFont(new Font("TimesRoman",Font.PLAIN ,33) );
+		jlb3.setFont(new Font("TimesRoman",Font.PLAIN ,25) );
+		jlb4.setFont(new Font("TimesRoman",Font.PLAIN ,33) );
 		
 		jp1.setLayout(new GridLayout(2,2,5,5));
 		jp1.add(jlb1);
@@ -71,7 +77,7 @@ public class CheckMoneyFrame extends JFrame {
 		});
 		jbtnEXIT.addActionListener(new ActionListener(){	//結束交易
 			public void actionPerformed(ActionEvent ae){
-				JOptionPane.showMessageDialog(null,"感謝使用，祝交易愉快  !");
+//				JOptionPane.showMessageDialog(null,"感謝使用，祝交易愉快  !");
 				tt = true;
 				dispose();									//關閉本視窗
 			}

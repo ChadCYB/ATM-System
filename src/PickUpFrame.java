@@ -54,62 +54,53 @@ public class PickUpFrame extends JFrame {
 		
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(atm.pickUpMoney(1000)){
-					closeFrame("交易成功，請提取現金  !");
-				}else{
-					closeFrame("交易失敗，您的餘額不足  !");
-				}
+				atmPickUp(1000,atm);
 			}
 		});
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(atm.pickUpMoney(2000)){
-					closeFrame("交易成功，請提取現金  !");
-				}else{
-					closeFrame("交易失敗，您的餘額不足  !");
-				}
+				atmPickUp(2000,atm);
 			}
 		});
 		btn3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(atm.pickUpMoney(3000)){
-					closeFrame("交易成功，請提取現金  !");
-				}else{
-					closeFrame("交易失敗，您的餘額不足  !");
-				}
+				atmPickUp(3000,atm);
 			}
 		});
 		btn5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(atm.pickUpMoney(5000)){
-					closeFrame("交易成功，請提取現金  !");
-				}else{
-					closeFrame("交易失敗，您的餘額不足  !");
-				}
+				atmPickUp(5000,atm);
 			}
 		});
 		btn10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(atm.pickUpMoney(10000)){
-					closeFrame("交易成功，請提取現金  !");
-				}else{
-					closeFrame("交易失敗，您的餘額不足  !");
-				}
+				atmPickUp(10000,atm);
 			}
 		});
 		btntext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String str= JOptionPane.showInputDialog("請輸入現金(以千為單位)");
 				try{
-					int money=Integer.parseInt(str);     //轉換成整數
-					atm.pickUpMoney(money);
+					double money = Double.parseDouble(str);     //轉換成整數
+					if(!atm.pickUpMoney(money*1000)){
+						throw new Exception();
+					}
 					closeFrame("交易成功，請提取現金  !");
-				}catch (Exception ex){
+				}catch (NumberFormatException ex){
 					closeFrame("發生錯誤，交易已取消 !");
+				}catch (Exception ex){
+					closeFrame("交易失敗，您的餘額不足  !");
 				}
 			}
 		});
 		
+	}
+	private void atmPickUp(double money, ATM atm){
+		if(atm.pickUpMoney(money)){
+			closeFrame("交易成功，請提取現金  !");
+		}else{
+			closeFrame("交易失敗，您的餘額不足  !");
+		}
 	}
 	private void closeFrame(String message){
 		JOptionPane.showMessageDialog(null,message);
