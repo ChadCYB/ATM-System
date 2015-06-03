@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import java.awt.Font;
@@ -23,7 +24,8 @@ public class PickUpFrame extends JFrame {
 	private JButton btn10 = new JButton("$10,000");
 	private JButton btntext = new JButton("自行輸入(只提供千元)");
 	private int Height = 450, Width = 500;
-
+	private boolean status = false;
+	
 	public PickUpFrame(ATM atm) {
 		initComp(atm);
 	}
@@ -53,38 +55,56 @@ public class PickUpFrame extends JFrame {
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				atm.pickUpMoney(1000);
+				closeFrame("交易成功，請提取現金  !");
 			}
 		});
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				atm.pickUpMoney(2000);
+				closeFrame("交易成功，請提取現金  !");
 			}
 		});
 		btn3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				atm.pickUpMoney(3000);
+				closeFrame("交易成功，請提取現金  !");
 			}
 		});
 		btn5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				atm.pickUpMoney(5000);
+				closeFrame("交易成功，請提取現金  !");
 			}
 		});
 		btn10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				atm.pickUpMoney(10000);
+				closeFrame("交易成功，請提取現金  !");
 			}
 		});
 		btntext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				String str= JOptionPane.showInputDialog("請輸入現金(以千為單位)");
+				try{
+					int money=Integer.parseInt(str);     //轉換成整數
+					atm.pickUpMoney(money);
+					closeFrame("交易成功，請提取現金  !");
+				}catch (Exception ex){
+					closeFrame("發生錯誤，交易已取消 !");
+				}
 			}
 		});
 		
 	}
-
+	private void closeFrame(String message){
+		JOptionPane.showMessageDialog(null,message);
+		int n = JOptionPane.showConfirmDialog(null,
+				"您是否已經按下showMessageDialog按鈕?",
+				"操作問題", JOptionPane.YES_NO_OPTION);
+		status = (n != JOptionPane.YES_OPTION) ? true:false;
+		dispose();									//關閉本視窗
+	}
 	public boolean status() {
-		// TODO Auto-generated method stub
-		return false;
+		return status;
 	}
 }

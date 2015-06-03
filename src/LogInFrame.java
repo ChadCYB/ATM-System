@@ -4,6 +4,7 @@
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -113,25 +114,15 @@ public class LogInFrame extends JFrame implements ActionListener {
 //										resetFrame(); //<<<<<<<<<<<<<<<<<<<RESET
 										setVisible(true);
 									}
-									public void windowActivated(WindowEvent arg0) {		//焦點視窗
-										
-									}
+									public void windowActivated(WindowEvent arg0) { }	//焦點視窗
 									public void windowClosing(WindowEvent arg0) {		//關閉視窗
 										mFrame1.dispose();
 										mFrame1.setVisible(false);
 									}
-									public void windowDeactivated(WindowEvent arg0) {	//視窗失去焦點
-										
-									}
-									public void windowDeiconified(WindowEvent arg0) {	//視窗取消最小化
-										
-									}
-									public void windowIconified(WindowEvent arg0) {		//視窗最小化
-										
-									}
-									public void windowOpened(WindowEvent arg0) {		//開啟視窗
-										
-									}
+									public void windowDeactivated(WindowEvent arg0) { }	//視窗失去焦點
+									public void windowDeiconified(WindowEvent arg0) { }	//視窗取消最小化
+									public void windowIconified(WindowEvent arg0) { }	//視窗最小化
+									public void windowOpened(WindowEvent arg0) { }		//開啟視窗
 								});
 							} catch (Exception e) {
 								e.printStackTrace();
@@ -160,6 +151,7 @@ public class LogInFrame extends JFrame implements ActionListener {
 			}
 		}
 		for (int i = 0; i < num.length; i++) {
+			JButn[i].setFont(new Font("TimesRoman",Font.PLAIN ,40) );
 			if(num[i]<10){
 				JButn[i].setText(num[i] + "");
 			}else if(num[i]==10){

@@ -16,7 +16,7 @@ public class MainFrame1 extends JFrame{
 	private Button SaveMoney=new Button("存錢");
 	private Button Check=new Button("查錢");
 	private Button Break=new Button("退出");
-	private Container cp = new Container();
+//	private Container cp = new Container();
 	private JPanel contentPane= new JPanel();
 	private JPanel jpwelcome = new JPanel();
 	private JPanel gridpanel = new JPanel();

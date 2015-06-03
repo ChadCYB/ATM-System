@@ -1,4 +1,4 @@
-/*	Class: CheckMoneyFrame
+/*	Class: main
  * 	Fuction: 쩊�{─(�{─턨プ헕)
  */
 
