@@ -43,6 +43,5 @@ class TransferFrame extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e){					//請聽器
 		JButton HitBtn=(JButton)e.getSource();					//看是誰被啟動的
 		JOptionPane.showMessageDialog(null, HitBtn.getText());	//測試
-
 	}
 }

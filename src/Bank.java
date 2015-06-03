@@ -48,6 +48,7 @@ public class Bank {
 		Statement stmt = null;								//資料庫操作
 		ResultSet rs1 = null;
 		CachedRowSetImpl crs = null;						//ResultSet的Cached
+		System.out.println(sql);											//<<<<<checkpoint
 		try {
 			Class.forName(DBDRIVER);						//載入驅動程式
 			dbConn = DriverManager.getConnection(host,username,password);		//連結資料庫(URL,user,passwd)
@@ -73,6 +74,7 @@ public class Bank {
 	private boolean dbUpdate(String sql){			//資料庫更新功能
 		Connection dbConn = null;							//資料庫連結
 		Statement stmt = null;								//資料庫操作
+		System.out.println(sql);											//<<<<<checkpoint
 		try {
 			Class.forName(DBDRIVER);						//載入驅動程式
 			dbConn = DriverManager.getConnection(host,username,password);		//連結資料庫(URL,user,passwd)
@@ -80,7 +82,6 @@ public class Bank {
 			stmt = dbConn.createStatement();				//建例實體Statement物件
 			stmt.executeUpdate(sql);						//執行SQL更新操作
 			stmt.close();									//操作關閉
-			System.out.println("stmt.close val checkpoint");				//<<<<checkpoint
 			dbConn.close();									//段開資料庫
 			System.out.println("<dbConn.close>");							//<<<<<checkpoint
 			return true;
@@ -111,7 +112,6 @@ public class Bank {
 			("SELECT * FROM tAccount WHERE AccID = '" +aID+ "' AND PIN = '"+ aPIN +"'");
 			//SELECT * FROM tAccount WHERE AccID = "A10546" AND PIN = "458712";
 		boolean loginFlag = false;
-		System.out.println(sql);
 		try {
 			rs = this.dbSearch(sql);
 			System.out.println("<SQL>-getRS-");				//<<<<<checkpoint
@@ -168,14 +168,31 @@ public class Bank {
 	public boolean pickUpMoney(String aID, String aPIN, double money){		//領錢
 		boolean flag = false;
 		String sql = 
-			("UPDATE tBankAccount"
+			(" UPDATE tBankAccount"
 			+" SET Balance = Balance - " + money
-			+" WHERE BankAccID = ( SELECT * FROM tAccount WHERE AccID = \"" +aID+ "\" AND PIN = \""+ aPIN +"\"");
+			+" WHERE BankAccID = ( SELECT BankAccID FROM tAccount WHERE AccID = '" +aID+ "' AND PIN = '"+ aPIN +"')");
 		flag = this.dbUpdate(sql);
 		return flag;
 	}
 	public boolean saveMoney(String aID, String aPIN, double money){		//存錢
 		return this.pickUpMoney(aID, aPIN, -money);
+	}
+	public boolean moneyTrf(String aID, String aPIN, double money, String trfInID){		//匯款
+		boolean flag1 = false;
+		flag1 = this.pickUpMoney(aID, aPIN, -money);
+		if(accIsExist(trfInID) && flag1){
+			String sql = 
+					("UPDATE tBankAccount"
+					+" SET Balance = Balance - " + money
+					+" WHERE BankAccID = ( SELECT BankAccID FROM tAccount WHERE AccID = '" +aID+ "')");
+			return this.dbUpdate(sql);
+		}else if(!flag1){
+			System.out.println("<pickUp Failed>");
+			return false;
+		}else{
+			System.out.println("<trfInID NotExist>");
+			return false;
+		}
 	}
 /*	public boolean pickUpMoney(String aID, String aPIN, double money){		//領錢(original)
 		Connection dbConn = null;							//資料庫連結
@@ -200,25 +217,6 @@ public class Bank {
 			return false;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
-		}
-	}
-*/
-
-/*
-	public boolean moneyTrf(String aID, String aPIN, double money, String trfInID){		//匯款
-		int arrNum = 0;
-		if(validate(aID, aPIN) && accIsExist(trfInID)){
-			getAccount(aID, aPIN).getBankAccount().setDeposit(
-					getAccount(aID, aPIN).getBankAccount().getDeposit()-money);
-			for(Account i:accountArr){
-				if(i.getAccID().equals(aID)) break;
-				arrNum++;
-			}
-			accountArr.get(arrNum).getBankAccount().setDeposit(
-					accountArr.get(arrNum).getBankAccount().getDeposit()+money);
-			return true;
-		}else{
 			return false;
 		}
 	}

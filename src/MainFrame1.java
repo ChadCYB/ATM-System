@@ -40,11 +40,8 @@ public class MainFrame1 extends JFrame{
 		setVisible(true);
 		this.setTitle("ATM System");
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);	//僅關閉此視窗
-		//this.setLayout(null);
 		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		this.setBounds((int)((screenSize.getWidth()-Width)*0.5), (int)((screenSize.getHeight()-Height)*0.5), Width, Height);
-	//	welcome.setBounds(170, 50, 200, 200);
-	//	welcome.setFont(new Font("Serief",Font.ITALIC+Font.BOLD,30));	//字體斜邊+粗體+30字
 
 		this.setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 1, 2, 5));
@@ -66,7 +63,33 @@ public class MainFrame1 extends JFrame{
 		
 		Receive.addActionListener(new ActionListener(){		//領錢
 			public void actionPerformed(ActionEvent ae){
-				
+				final PickUpFrame pkFrame = new PickUpFrame(atm);
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							pkFrame.addWindowListener(new WindowListener(){
+								public void windowClosed(WindowEvent arg0) {		//視窗關閉後
+									if(pkFrame.status()){
+										dispose();
+									}else{
+										setVisible(true);
+									}
+								}
+								public void windowActivated(WindowEvent arg0) { }	//焦點視窗
+								public void windowClosing(WindowEvent arg0) {		//關閉視窗
+									pkFrame.dispose();									
+								}
+								public void windowDeactivated(WindowEvent arg0) { }	//視窗失去焦點
+								public void windowDeiconified(WindowEvent arg0) { }	//視窗取消最小化
+								public void windowIconified(WindowEvent arg0) { }	//視窗最小化
+								public void windowOpened(WindowEvent arg0) { }		//開啟視窗
+							});
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+				setVisible(false);
 			}
 		});
 		SaveMoney.addActionListener(new ActionListener(){	//存錢
@@ -76,36 +99,26 @@ public class MainFrame1 extends JFrame{
 		});
 		Check.addActionListener(new ActionListener(){		//查錢
 			public void actionPerformed(ActionEvent ae){
-				final CheckMoneyFrame ckmoneyFrame = new CheckMoneyFrame(atm);
+				final CheckMoneyFrame ckMoneyFrame = new CheckMoneyFrame(atm);
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							ckmoneyFrame.addWindowListener(new WindowListener(){
+							ckMoneyFrame.addWindowListener(new WindowListener(){
 								public void windowClosed(WindowEvent arg0) {		//視窗關閉後
-									if(ckmoneyFrame.status()){
+									if(ckMoneyFrame.status()){
 										dispose();
 									}else{
 										setVisible(true);
 									}
 								}
-								public void windowActivated(WindowEvent arg0) {		//焦點視窗
-									
-								}
+								public void windowActivated(WindowEvent arg0) { }	//焦點視窗
 								public void windowClosing(WindowEvent arg0) {		//關閉視窗
-									ckmoneyFrame.dispose();									
+									ckMoneyFrame.dispose();									
 								}
-								public void windowDeactivated(WindowEvent arg0) {	//視窗失去焦點
-									
-								}
-								public void windowDeiconified(WindowEvent arg0) {	//視窗取消最小化
-									
-								}
-								public void windowIconified(WindowEvent arg0) {		//視窗最小化
-									
-								}
-								public void windowOpened(WindowEvent arg0) {		//開啟視窗
-									
-								}
+								public void windowDeactivated(WindowEvent arg0) { }	//視窗失去焦點
+								public void windowDeiconified(WindowEvent arg0) { }	//視窗取消最小化
+								public void windowIconified(WindowEvent arg0) { }	//視窗最小化
+								public void windowOpened(WindowEvent arg0) { }		//開啟視窗
 							});
 						} catch (Exception e) {
 							e.printStackTrace();

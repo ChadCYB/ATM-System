@@ -1,9 +1,13 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import java.awt.Dimension;
 import java.awt.GridLayout;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -18,6 +22,7 @@ public class PickUpFrame extends JFrame {
 	private JButton btn5 = new JButton("$5000");
 	private JButton btn10 = new JButton("$10,000");
 	private JButton btntext = new JButton("自行輸入(只提供千元)");
+	private int Height = 450, Width = 500;
 
 	public PickUpFrame(ATM atm) {
 		initComp(atm);
@@ -25,8 +30,10 @@ public class PickUpFrame extends JFrame {
 
 	private void initComp(ATM atm) {
 		setVisible(true);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setBounds(100, 100, 450, 300);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);	//僅關閉此視窗
+		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		this.setBounds((int)((screenSize.getWidth()-Width)*0.5), (int)((screenSize.getHeight()-Height)*0.5), Width, Height);
+
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 1, 2, 5));
 		gridpanel.setLayout(new GridLayout(0, 2, 4, 5));
@@ -74,5 +81,10 @@ public class PickUpFrame extends JFrame {
 			}
 		});
 		
+	}
+
+	public boolean status() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

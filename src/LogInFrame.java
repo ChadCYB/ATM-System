@@ -28,7 +28,7 @@ public class LogInFrame extends JFrame implements ActionListener {
 	private JButton jbtnClear2 = new JButton("Clear");
 	private JLabel jlb1 = new JLabel("ID:");
 	private JLabel jlb2 = new JLabel("PIN:");
-	private JTextField jtfAcc = new JTextField("b00001");
+	private JTextField jtfAcc = new JTextField("A10546");
 	private JPasswordField jpfPass = new JPasswordField("458712");
 
 	private JButton JButn[] = new JButton[12];
@@ -110,7 +110,7 @@ public class LogInFrame extends JFrame implements ActionListener {
 							try {
 								mFrame1.addWindowListener(new WindowListener(){
 									public void windowClosed(WindowEvent arg0) {		//視窗關閉後
-										resetFrame();
+//										resetFrame(); //<<<<<<<<<<<<<<<<<<<RESET
 										setVisible(true);
 									}
 									public void windowActivated(WindowEvent arg0) {		//焦點視窗
