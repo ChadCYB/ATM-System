@@ -54,32 +54,47 @@ public class PickUpFrame extends JFrame {
 		
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				atm.pickUpMoney(1000);
-				closeFrame("交易成功，請提取現金  !");
+				if(atm.pickUpMoney(1000)){
+					closeFrame("交易成功，請提取現金  !");
+				}else{
+					closeFrame("交易失敗，您的餘額不足  !");
+				}
 			}
 		});
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				atm.pickUpMoney(2000);
-				closeFrame("交易成功，請提取現金  !");
+				if(atm.pickUpMoney(2000)){
+					closeFrame("交易成功，請提取現金  !");
+				}else{
+					closeFrame("交易失敗，您的餘額不足  !");
+				}
 			}
 		});
 		btn3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				atm.pickUpMoney(3000);
-				closeFrame("交易成功，請提取現金  !");
+				if(atm.pickUpMoney(3000)){
+					closeFrame("交易成功，請提取現金  !");
+				}else{
+					closeFrame("交易失敗，您的餘額不足  !");
+				}
 			}
 		});
 		btn5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				atm.pickUpMoney(5000);
-				closeFrame("交易成功，請提取現金  !");
+				if(atm.pickUpMoney(5000)){
+					closeFrame("交易成功，請提取現金  !");
+				}else{
+					closeFrame("交易失敗，您的餘額不足  !");
+				}
 			}
 		});
 		btn10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				atm.pickUpMoney(10000);
-				closeFrame("交易成功，請提取現金  !");
+				if(atm.pickUpMoney(10000)){
+					closeFrame("交易成功，請提取現金  !");
+				}else{
+					closeFrame("交易失敗，您的餘額不足  !");
+				}
 			}
 		});
 		btntext.addActionListener(new ActionListener() {
@@ -99,8 +114,7 @@ public class PickUpFrame extends JFrame {
 	private void closeFrame(String message){
 		JOptionPane.showMessageDialog(null,message);
 		int n = JOptionPane.showConfirmDialog(null,
-				"您是否已經按下showMessageDialog按鈕?",
-				"操作問題", JOptionPane.YES_NO_OPTION);
+				"您是否繼續交易?","操作問題", JOptionPane.YES_NO_OPTION);
 		status = (n != JOptionPane.YES_OPTION) ? true:false;
 		dispose();									//關閉本視窗
 	}

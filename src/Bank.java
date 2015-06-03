@@ -167,11 +167,14 @@ public class Bank {
 	}
 	public boolean pickUpMoney(String aID, String aPIN, double money){		//領錢
 		boolean flag = false;
-		String sql = 
-			(" UPDATE tBankAccount"
-			+" SET Balance = Balance - " + money
-			+" WHERE BankAccID = ( SELECT BankAccID FROM tAccount WHERE AccID = '" +aID+ "' AND PIN = '"+ aPIN +"')");
-		flag = this.dbUpdate(sql);
+		double bankBalance = Double.parseDouble(checkMoney(aID,aPIN)[1]);
+		if(bankBalance >= money){											//判斷是否夠領錢
+			String sql = 
+				(" UPDATE tBankAccount"
+				+" SET Balance = Balance - " + money
+				+" WHERE BankAccID = ( SELECT BankAccID FROM tAccount WHERE AccID = '" +aID+ "' AND PIN = '"+ aPIN +"')");
+			flag = this.dbUpdate(sql);
+		}
 		return flag;
 	}
 	public boolean saveMoney(String aID, String aPIN, double money){		//存錢
