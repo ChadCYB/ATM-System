@@ -1,6 +1,7 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
@@ -38,7 +39,8 @@ public class PickUpFrame extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 1, 2, 5));
-		gridpanel.setLayout(new GridLayout(0, 2, 4, 5));
+		gridpanel.setLayout(new GridLayout(0, 2, 5, 5));
+		gridpanel.setBackground(Color.orange);
 		
 		Receive.setFont(new Font("新細明體", Font.BOLD, 40));
 		Receive.setHorizontalAlignment(SwingConstants.CENTER);
@@ -81,15 +83,14 @@ public class PickUpFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String str= JOptionPane.showInputDialog("請輸入現金(以千為單位)");
 				try{
-					double money = Double.parseDouble(str);     //轉換成整數
-					if(!atm.pickUpMoney(money*1000)){
-						throw new Exception();
-					}
+					if(str.isEmpty()) throw new NumberFormatException();	//沒有輸入東西
+					double money = Double.parseDouble(str);     			//轉換成整數
+					if(!atm.pickUpMoney(money*1000)) throw new Exception();	//餘額不足
 					closeFrame("交易成功，請提取現金  !");
 				}catch (NumberFormatException ex){
 					closeFrame("發生錯誤，交易已取消 !");
 				}catch (Exception ex){
-					closeFrame("交易失敗，您的餘額不足  !");
+					closeFrame("交易失敗，您的帳戶餘額不足  !");
 				}
 			}
 		});
@@ -99,7 +100,7 @@ public class PickUpFrame extends JFrame {
 		if(atm.pickUpMoney(money)){
 			closeFrame("交易成功，請提取現金  !");
 		}else{
-			closeFrame("交易失敗，您的餘額不足  !");
+			closeFrame("交易失敗，您的帳戶餘額不足  !");
 		}
 	}
 	private void closeFrame(String message){
