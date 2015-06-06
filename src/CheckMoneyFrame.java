@@ -12,7 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -22,7 +21,7 @@ public class CheckMoneyFrame extends JFrame {
 	public CheckMoneyFrame(ATM atm) {
 		initComp(atm);
 	}
-	private JLabel jlb1=new JLabel("ID:");
+	private JLabel jlb1=new JLabel("BankID:");
 	private JLabel jlb2=new JLabel("NAME");
 	private JLabel jlb3=new JLabel("BALANCE:");
 	private JLabel jlb4=new JLabel("MONEY");
@@ -32,10 +31,10 @@ public class CheckMoneyFrame extends JFrame {
 	private JPanel jp1 = new JPanel();
 	private JPanel jp2 = new JPanel();
 	private int Height = 400, Width = 500;
-	private boolean tt = false;
+	private boolean status = false;
 	
 	public boolean status(){								//是否結束交易
-		return tt;
+		return status;
 	}
 	private void getDetail(ATM atm){
 		jlb2.setText(atm.checkMoney()[0]);
@@ -77,8 +76,7 @@ public class CheckMoneyFrame extends JFrame {
 		});
 		jbtnEXIT.addActionListener(new ActionListener(){	//結束交易
 			public void actionPerformed(ActionEvent ae){
-//				JOptionPane.showMessageDialog(null,"感謝使用，祝交易愉快  !");
-				tt = true;
+				status = true;
 				dispose();									//關閉本視窗
 			}
 		});

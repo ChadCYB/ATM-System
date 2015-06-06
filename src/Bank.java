@@ -40,7 +40,6 @@ public class Bank {
 		if(password.isEmpty()){								//password 未設定, 給預設值空字串
 			System.out.println("database passwd not set");
 		}
-//		dataBaseSearch(host,username,password,"");
 	}
 
 	private ResultSet dbSearch(String sql){			//資料庫查詢功能
@@ -96,7 +95,7 @@ public class Bank {
 	
 	private boolean accIsExist(String aID){					//帳號使否存在
 		try {
-			ResultSet rs1 = dbSearch("SELECT AccID FROM tAccount WHERE AccID = "+aID);
+			ResultSet rs1 = dbSearch("SELECT AccID FROM tAccount WHERE BankAccID = "+aID);
 			int count = 0;
 			while(rs1.next()) count++;
 			return (count == 1) ? true:false;
@@ -170,7 +169,7 @@ public class Bank {
 		double bankBalance = Double.parseDouble(checkMoney(aID,aPIN)[1]);
 		if(bankBalance >= money){											//判斷是否夠領錢
 			String sql = 
-				(" UPDATE tBankAccount"
+				("UPDATE tBankAccount"
 				+" SET Balance = Balance - " + money
 				+" WHERE BankAccID = ( SELECT BankAccID FROM tAccount WHERE AccID = '" +aID+ "' AND PIN = '"+ aPIN +"')");
 			flag = this.dbUpdate(sql);
@@ -182,46 +181,20 @@ public class Bank {
 	}
 	public boolean moneyTrf(String aID, String aPIN, double money, String trfInID){		//匯款
 		boolean flag1 = false;
-		flag1 = this.pickUpMoney(aID, aPIN, -money);
+		flag1 = this.pickUpMoney(aID, aPIN, money);			//領出要匯款金額
 		if(accIsExist(trfInID) && flag1){
 			String sql = 
 					("UPDATE tBankAccount"
-					+" SET Balance = Balance - " + money
-					+" WHERE BankAccID = ( SELECT BankAccID FROM tAccount WHERE AccID = '" +aID+ "')");
-			return this.dbUpdate(sql);
-		}else if(!flag1){
+					+" SET Balance = Balance + " + money
+					+" WHERE BankAccID = '" +trfInID+ "'");
+			flag1 = this.dbUpdate(sql);
+		}else if(!flag1){									//領錢錯誤
 			System.out.println("<pickUp Failed>");
-			return false;
-		}else{
+		}else{												//匯款錯誤
 			System.out.println("<trfInID NotExist>");
-			return false;
+			saveMoney(aID,aPIN,money); 						//匯款失敗，把錢存回來
+			flag1 = false;
 		}
+		return flag1;
 	}
-/*	public boolean pickUpMoney(String aID, String aPIN, double money){		//領錢(original)
-		Connection dbConn = null;							//資料庫連結
-		Statement stmt = null;								//資料庫操作
-		String sql = 
-			("UPDATE tBankAccount"
-			+" SET Balance = Balance - " + money
-			+" WHERE BankAccID = ( SELECT * FROM tAccount WHERE AccID = \"" +aID+ "\" AND PIN = \""+ aPIN +"\"");
-		try {
-			Class.forName(DBDRIVER);						//載入驅動程式
-			dbConn = DriverManager.getConnection(host,username,password);		//連結資料庫(URL,user,passwd)
-			System.out.println(dbConn);						//<<<Check Point
-			stmt = dbConn.createStatement();				//建例實體Statement物件
-			stmt.executeUpdate(sql);						//執行SQL更新操作
-			stmt.close();									//操作關閉
-			System.out.println("stmt.close val checkpoint");					//<<<<<checkpoint
-			dbConn.close();									//段開資料庫
-			System.out.println("<dbConn.close val>");							//<<<<<checkpoint
-			return true;
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return false;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-*/
 }

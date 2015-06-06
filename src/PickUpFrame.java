@@ -1,18 +1,15 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
-
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class PickUpFrame extends JFrame {
 	private JPanel contentPane = new JPanel();
@@ -40,6 +37,7 @@ public class PickUpFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 1, 2, 5));
 		gridpanel.setLayout(new GridLayout(0, 2, 5, 5));
+		contentPane.setBackground(new Color(180, 240, 245));
 		gridpanel.setBackground(Color.orange);
 		
 		Receive.setFont(new Font("新細明體", Font.BOLD, 40));
@@ -94,7 +92,6 @@ public class PickUpFrame extends JFrame {
 				}
 			}
 		});
-		
 	}
 	private void atmPickUp(double money, ATM atm){
 		if(atm.pickUpMoney(money)){
@@ -103,12 +100,12 @@ public class PickUpFrame extends JFrame {
 			closeFrame("交易失敗，您的帳戶餘額不足  !");
 		}
 	}
-	private void closeFrame(String message){
+	private void closeFrame(String message){		//關閉視窗
 		JOptionPane.showMessageDialog(null,message);
 		int n = JOptionPane.showConfirmDialog(null,
 				"您是否繼續交易?","操作問題", JOptionPane.YES_NO_OPTION);
 		status = (n != JOptionPane.YES_OPTION) ? true:false;
-		dispose();									//關閉本視窗
+		dispose();
 	}
 	public boolean status() {
 		return status;

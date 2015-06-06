@@ -44,7 +44,7 @@ public class LogInFrame extends JFrame implements ActionListener {
 	private void initComp(final LogIn login, final ATM atm){
 		setVisible(true);
 		this.setTitle("LogIn");
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE); // 關閉整個程式
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);	//關閉整個程式
 		this.setResizable(true);
 		setBounds(300, 300, 500, 400);
 		cp = this.getContentPane();
@@ -73,14 +73,12 @@ public class LogInFrame extends JFrame implements ActionListener {
 		jp4.add(jbtnCancel);
 		jp4.add(jbtnEnter);
 		
-		// <--------------------------
 		for (int i = 0; i < JButn.length; i++) {
 			JButn[i] = new JButton();
 			JButn[i].addActionListener(this);
 			jp3.add(JButn[i]);
 		}
-		randJBTN();
-		// <--------------------------
+		randJBTN();										//亂數按鈕
 
 		jbtnClear1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
@@ -94,7 +92,7 @@ public class LogInFrame extends JFrame implements ActionListener {
 		});
 		jbtnCancel.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent ae){
-				randJBTN();
+				randJBTN();								//亂數按鈕
 			}
 		});
 		jbtnEnter.addActionListener(new ActionListener(){
@@ -112,6 +110,7 @@ public class LogInFrame extends JFrame implements ActionListener {
 								mFrame1.addWindowListener(new WindowListener(){
 									public void windowClosed(WindowEvent arg0) {		//視窗關閉後
 //										resetFrame(); //<<<<<<<<<<<<<<<<<<<RESET
+										JOptionPane.showMessageDialog(null,"感謝使用，祝交易愉快  !");
 										setVisible(true);
 									}
 									public void windowActivated(WindowEvent arg0) { }	//焦點視窗
@@ -136,10 +135,9 @@ public class LogInFrame extends JFrame implements ActionListener {
 			}
 		});
 	}
-	private void randJBTN(){
+	private void randJBTN(){							//亂數按鈕
 		int[] num = new int[12];
 		boolean[] bNum = new boolean[12];
-		
 
 		for (int i = 0; i < num.length; i++) {
 			int rand = (int)(Math.random()*num.length);
@@ -161,14 +159,13 @@ public class LogInFrame extends JFrame implements ActionListener {
 			}
 		}
 	}
-	private void resetFrame() {
+	private void resetFrame() {							//重置畫面
 		jtfAcc.setText("");
 		jpfPass.setText(""); 
 		randJBTN();
 	}
-	public void actionPerformed(ActionEvent e) { // 接收按鈕指令
-		JButton HitBtn = (JButton) e.getSource(); // 查詢來源
-//		String str = jpfPass.getText();
+	public void actionPerformed(ActionEvent e) { 		//接收按鈕指令
+		JButton HitBtn = (JButton) e.getSource(); 		//查詢來源
 		jpfPass.setText(jpfPass.getText() + HitBtn.getText());
 	}
 

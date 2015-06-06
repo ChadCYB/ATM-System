@@ -1,3 +1,4 @@
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,20 +12,28 @@ import javax.swing.JTextField;
 
 class TransferFrame extends JFrame implements ActionListener{
 		private JPanel contentPane = new JPanel();
-		private JLabel Transfer_Account=new JLabel("Transfer Account");	//輸入轉帳帳號文字(顯示)
+		private JLabel Transfer_Account=new JLabel("匯款帳號");			//輸入轉帳帳號文字(顯示)
 		private JTextField txtTransfer_Account =new JTextField();		//輸入轉帳帳號(輸入區)
-		private JLabel Money=new JLabel("Transfer Amount");				//輸入金額號文字(顯示)
+		private JLabel Money=new JLabel("匯款金額");						//輸入金額文字(顯示)
 		private JTextField txtMoney =new JTextField();					//輸入金額 (輸入區)
-		private JButton Confirm=new JButton("Confirm");					//確認按鈕
-		private JButton Cancel=new JButton("Cancel");					//取消按鈕
-	
-	public TransferFrame(){
+		private JButton Confirm=new JButton("確認匯款");					//確認按鈕
+		private JButton Cancel=new JButton("取消交易");					//取消按鈕
+		private int Height = 300, Width = 500;
+		private boolean status = false;
+		private ATM atm;
+	public TransferFrame(ATM atm1){
+		atm = atm1;
 		initComp();
 	}
 	
 	private void initComp(){
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 469, 250);
+		setVisible(true);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);			//僅關閉此視窗
+		this.setTitle("CheckMoney");
+		this.setResizable(true);
+		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		this.setBounds((int)((screenSize.getWidth()-Width)*0.5), (int)((screenSize.getHeight()-Height)*0.5), Width, Height);
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(3,2,0,50));
 		
@@ -35,13 +44,41 @@ class TransferFrame extends JFrame implements ActionListener{
 		contentPane.add(Confirm);
 		contentPane.add(Cancel);
 		
-		Confirm.addActionListener(this);						//放入請聽
-		Cancel.addActionListener(this);							//放入請聽
+		Confirm.addActionListener(this);							//放入請聽
+		Cancel.addActionListener(this);								//放入請聽
 		
 		setVisible(true);
 	}
-	public void actionPerformed(ActionEvent e){					//請聽器
-		JButton HitBtn=(JButton)e.getSource();					//看是誰被啟動的
-		JOptionPane.showMessageDialog(null, HitBtn.getText());	//測試
+	public void actionPerformed(ActionEvent e){						//請聽器
+		JButton HitBtn=(JButton)e.getSource();						//看是誰被啟動的
+		switch(HitBtn.getText()){
+			case "確認匯款":
+				String trfID = txtTransfer_Account.getText();
+				String trfBalance = txtMoney.getText();
+				try{
+					if(trfID.isEmpty() || trfBalance.isEmpty()) throw new NumberFormatException();	//沒有輸入東西
+					double money = Double.parseDouble(trfBalance);				//轉換成整數
+					if(!atm.moneyTransfer(money, trfID)) throw new Exception();	//餘額不足
+					closeFrame("匯款成功  !");
+				}catch (NumberFormatException ex){
+					closeFrame("發生錯誤，交易已取消 !");
+				}catch (Exception ex){
+					closeFrame("交易失敗，您的帳戶餘額不足  !");
+				}
+				break;
+			case "取消交易":
+				dispose();										//關閉本視窗
+				break;
+		}
+	}
+	private void closeFrame(String message){
+		JOptionPane.showMessageDialog(null,message);
+		int n = JOptionPane.showConfirmDialog(null,
+				"您是否繼續交易?","操作問題", JOptionPane.YES_NO_OPTION);
+		status = (n != JOptionPane.YES_OPTION) ? true:false;
+		dispose();												//關閉本視窗
+	}
+	public boolean status() {
+		return status;
 	}
 }
