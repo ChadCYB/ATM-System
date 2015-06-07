@@ -34,7 +34,7 @@ public class SaveFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SaveFrame frame = new SaveFrame();
+					SaveFrame frame = new SaveFrame(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,10 +46,10 @@ public class SaveFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SaveFrame() {
-		SaveFrame1();
+	public SaveFrame(ATM atm) {
+		SaveFrame1(atm);
 	}
-	public void SaveFrame1() {
+	public void SaveFrame1(ATM atm) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -63,7 +63,8 @@ public class SaveFrame extends JFrame {
 		
 		center.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		lab$.setFont(new Font("新細明體", Font.PLAIN, 16));
+		lab$.setFont(new Font("新細明體", Font.BOLD, 22));
+		lab$.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		bottom.setLayout(new GridLayout(1, 2, 5, 5));
 		
