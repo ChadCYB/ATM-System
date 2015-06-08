@@ -2,7 +2,6 @@
  * 	Fuction: 쩊�{─(�{─턨プ헕)
  */
 
-import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
@@ -18,7 +17,6 @@ public class main {
 		} catch (Exception e) {
 		    // If Nimbus is not available, you can set the GUI to another look and feel.
 		}
-
 		Bank aBank = new Bank();
 		LogIn login = new LogIn(aBank);
 		ATM atm1 = new ATM(aBank);
