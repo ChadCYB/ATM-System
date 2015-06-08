@@ -9,30 +9,19 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 import javax.swing.*; 
-import javax.swing.UIManager.LookAndFeelInfo;
 
 public class MainFrame1 extends JFrame{
 	private Label welcome=new Label("welcome");
-	private Button Receive=new Button("領錢");
-	private Button SaveMoney=new Button("存錢");
-	private Button Transfer=new Button("匯款");
-	private Button Check=new Button("查看餘額");
+	private JButton Receive=new JButton("領錢");
+	private JButton SaveMoney=new JButton("存錢");
+	private JButton Transfer=new JButton("匯款");
+	private JButton Check=new JButton("查看餘額");
 	private JPanel contentPane= new JPanel();
 	private JPanel jpwelcome = new JPanel();
 	private JPanel gridpanel = new JPanel();
 	private int Height = 500, Width = 500;
 	
 	public MainFrame1(ATM atm){
-		try {
-		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-		        if ("Nimbus".equals(info.getName())) {
-		            UIManager.setLookAndFeel(info.getClassName());
-		            break;
-		        }
-		    }
-		} catch (Exception e) {
-		    // If Nimbus is not available, you can set the GUI to another look and feel.
-		}
 		initComp(atm);
 	}
 

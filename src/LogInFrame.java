@@ -103,7 +103,7 @@ public class LogInFrame extends JFrame implements ActionListener {
 				if(login.findAccount()){
 					JOptionPane.showMessageDialog(null,"Welcome "+login.getUserName()+" !");
 					atm.setAccUser(sAcc, new String(jpfPass.getPassword()));
-					final MainFrame1 mFrame1 = new MainFrame1(atm);
+					MainFrame1 mFrame1 = new MainFrame1(atm);
 					EventQueue.invokeLater(new Runnable() {
 						public void run() {
 							try {

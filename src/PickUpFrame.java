@@ -45,6 +45,11 @@ public class PickUpFrame extends JFrame {
 		
 		contentPane.add(Receive);
 		contentPane.add(gridpanel);
+		btn1.setFont(new Font("Serief",Font.PLAIN,30));
+		btn2.setFont(new Font("Serief",Font.PLAIN,30));
+		btn3.setFont(new Font("Serief",Font.PLAIN,30));
+		btn5.setFont(new Font("Serief",Font.PLAIN,30));
+		btn10.setFont(new Font("Serief",Font.PLAIN,30));
 		gridpanel.add(btn1);
 		gridpanel.add(btn5);
 		gridpanel.add(btn2);
