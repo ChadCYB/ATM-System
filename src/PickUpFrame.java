@@ -87,13 +87,16 @@ public class PickUpFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String str= JOptionPane.showInputDialog("請輸入現金(以千為單位)");
 				try{
-					if(str.isEmpty()) throw new NumberFormatException();	//沒有輸入東西
-					double money = Double.parseDouble(str);     			//轉換成整數
-					if(!atm.pickUpMoney(money*1000)) throw new Exception();	//餘額不足
+					double money = Double.parseDouble(str);     				//轉換成整數
+					if(money<=0) throw new NumberFormatException();				//沒有輸入東西
+					if(!atm.pickUpMoney(money*1000)) throw new Exception();		//餘額不足
 					closeFrame("交易成功，請提取現金  !");
+				}catch (NullPointerException ex){
+					closeFrame("未輸入資料，交易已取消 !");
 				}catch (NumberFormatException ex){
 					closeFrame("發生錯誤，交易已取消 !");
 				}catch (Exception ex){
+					System.out.println(ex);
 					closeFrame("交易失敗，您的帳戶餘額不足  !");
 				}
 			}
