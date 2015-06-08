@@ -60,7 +60,9 @@ public class LogInFrame extends JFrame implements ActionListener {
 		jp1.add(jlb2);
 		jp1.add(jpfPass);
 		jp1.add(jbtnClear2);
-
+		
+		jpfPass.setEditable(false);
+		
 		jp2.setLayout(new BorderLayout());
 		jp2.add(jp3, BorderLayout.CENTER);
 		jp2.add(jp4, BorderLayout.EAST);

@@ -56,14 +56,13 @@ class TransferFrame extends JFrame implements ActionListener{
 				String trfID = txtTransfer_Account.getText();
 				String trfBalance = txtMoney.getText();
 				try{
-					if(trfID.isEmpty() || trfBalance.isEmpty()) throw new NumberFormatException();	//沒有輸入東西
+					if(trfID.isEmpty() || trfBalance.isEmpty()) throw new Exception();	//沒有輸入東西
 					double money = Double.parseDouble(trfBalance);				//轉換成整數
+					if(money <=0) throw new Exception();
 					if(!atm.moneyTransfer(money, trfID)) throw new Exception();	//餘額不足
 					closeFrame("匯款成功  !");
-				}catch (NumberFormatException ex){
-					closeFrame("發生錯誤，交易已取消 !");
 				}catch (Exception ex){
-					closeFrame("交易失敗，您的帳戶餘額不足  !");
+					closeFrame("發生錯誤，交易已取消 !");
 				}
 				break;
 			case "取消交易":

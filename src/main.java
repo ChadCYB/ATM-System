@@ -2,7 +2,6 @@
  * 	Fuction: 쩊�{─(�{─턨プ헕)
  */
 
-import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 

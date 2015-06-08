@@ -34,7 +34,7 @@ public class MainFrame1 extends JFrame{
 
 		this.setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 1, 2, 5));
-		welcome.setFont(new Font("Serief",Font.ITALIC+Font.BOLD,40));//字體斜邊+粗體+30字
+		welcome.setFont(new Font("Serief",Font.ITALIC+Font.BOLD,40));//字體斜邊+粗體+40字
 		gridpanel.setLayout(new GridLayout(0, 2, 2, 5));
 
 		contentPane.add(jpwelcome);
