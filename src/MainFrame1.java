@@ -82,7 +82,33 @@ public class MainFrame1 extends JFrame{
 		});
 		SaveMoney.addActionListener(new ActionListener(){	//存錢
 			public void actionPerformed(ActionEvent ae){
-				
+				SaveFrame saveFrame = new SaveFrame(atm);
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							saveFrame.addWindowListener(new WindowListener(){
+								public void windowClosed(WindowEvent arg0) {		//視窗關閉後
+									if(saveFrame.status()){
+										dispose();
+									}else{
+										setVisible(true);
+									}
+								}
+								public void windowActivated(WindowEvent arg0) { }	//焦點視窗
+								public void windowClosing(WindowEvent arg0) {		//關閉視窗
+									saveFrame.dispose();									
+								}
+								public void windowDeactivated(WindowEvent arg0) { }	//視窗失去焦點
+								public void windowDeiconified(WindowEvent arg0) { }	//視窗取消最小化
+								public void windowIconified(WindowEvent arg0) { }	//視窗最小化
+								public void windowOpened(WindowEvent arg0) { }		//開啟視窗
+							});
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+				setVisible(false);
 			}
 		});
 		Check.addActionListener(new ActionListener(){		//查錢
