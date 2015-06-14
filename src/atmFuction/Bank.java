@@ -214,19 +214,19 @@ public class Bank {
 		switch(logType){
 			case "查錢":
 				sql =("INSERT INTO tLog(TIME_COL, logType, TxAmount, AccNo, Message)"
-					+" VALUES (now(), \'CheckMoney\', 0, \'" + AccNo + "\', \'" + Message + "\')"); 
+					+" VALUES (now(), \'Check$\', 0, \'" + AccNo + "\', \'" + Message + "\')"); 
 				break;
 			case "存錢":
 				sql =("INSERT INTO tLog(TIME_COL, logType, TxAmount, AccNo, Message)"
-					+" VALUES (now(), \'SaveMoney\', " + TxAmount + ", \'" + AccNo + "\', \'" + Message + "\')"); 
+					+" VALUES (now(), \'Save$\', " + TxAmount + ", \'" + AccNo + "\', \'" + Message + "\')"); 
 				break;
 			case "領錢":
 				sql =("INSERT INTO tLog(TIME_COL, logType, TxAmount, AccNo, Message)"
-					+" VALUES (now(), \'PickUpMoney\', " + TxAmount + ", \'" + AccNo + "\', \'" + Message + "\')"); 
+					+" VALUES (now(), \'PickUp$\', " + TxAmount + ", \'" + AccNo + "\', \'" + Message + "\')"); 
 				break;
 			case "轉帳":
 				sql =("INSERT INTO tLog(TIME_COL, logType, TxAmount, TfrAccNo, AccNo, Message)"
-					+" VALUES (now(), \'TransferMoney\', " + TxAmount + ", \'" + TfrAccNo + "\',"
+					+" VALUES (now(), \'Trf$\', " + TxAmount + ", \'" + TfrAccNo + "\',"
 										+ " \'" + AccNo + "\', \'" + Message + "\')"); 
 				break;
 		}
