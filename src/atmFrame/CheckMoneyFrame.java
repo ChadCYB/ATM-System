@@ -1,3 +1,4 @@
+package atmFrame;
 /*	Class: CheckMoneyFrame
  * 	Fuction: 查看餘額視窗
  */
@@ -16,7 +17,9 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
-public class CheckMoneyFrame extends JFrame {
+import atmFuction.ATM;
+
+public class CheckMoneyFrame extends JFrame{
 
 	public CheckMoneyFrame(ATM atm) {
 		initComp(atm);
@@ -33,9 +36,6 @@ public class CheckMoneyFrame extends JFrame {
 	private int Height = 400, Width = 500;
 	private boolean status = false;
 	
-	public boolean status(){								//是否結束交易
-		return status;
-	}
 	private void getDetail(ATM atm){
 		jlb2.setText(atm.checkMoney()[0]);
 		jlb4.setText(atm.checkMoney()[1]);
@@ -81,5 +81,7 @@ public class CheckMoneyFrame extends JFrame {
 			}
 		});
 	}
-
+	public boolean status(){								//是否結束交易
+		return status;
+	}
 }

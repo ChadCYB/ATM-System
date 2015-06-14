@@ -1,3 +1,4 @@
+package atmFuction;
 /*	Class: Bank
  * 	Fuction: 提供帳戶資料庫查詢(資訊保持者)
  */
@@ -197,4 +198,8 @@ public class Bank {
 		}
 		return flag1;
 	}
+	
+//	private void atmLogger(){
+//		
+//	}
 }

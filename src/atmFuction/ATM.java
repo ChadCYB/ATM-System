@@ -1,3 +1,5 @@
+package atmFuction;
+
 
 public class ATM {
 	private Bank theBank;

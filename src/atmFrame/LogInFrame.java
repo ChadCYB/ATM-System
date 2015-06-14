@@ -1,3 +1,4 @@
+package atmFrame;
 /*	Class: LogInFrame
  * 	Fuction: µn¤Jµøµ¡
  */
@@ -19,6 +20,9 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+
+import atmFuction.ATM;
+import atmFuction.LogIn;
 
 public class LogInFrame extends JFrame implements ActionListener {
 	public LogInFrame(LogIn login, ATM atm){

@@ -5,6 +5,11 @@
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
+import atmFrame.LogInFrame;
+import atmFuction.ATM;
+import atmFuction.Bank;
+import atmFuction.LogIn;
+
 public class main {
 	public static void main(String[] args) {
 		try {

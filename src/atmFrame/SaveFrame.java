@@ -1,3 +1,4 @@
+package atmFrame;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -10,6 +11,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
+
+import atmFuction.ATM;
+import atmFuction.Logger;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -49,6 +53,7 @@ public class SaveFrame extends JFrame {
 		moneyLab.setFont(new Font("新細明體", Font.BOLD, 22));
 		inMoney.setHorizontalAlignment(SwingConstants.CENTER);
 		nowMoney.setHorizontalAlignment(SwingConstants.CENTER);
+		setLabelMoney(atm);
 		
 		contentPane.add(north);
 		north.add(nowMoney);
@@ -59,7 +64,7 @@ public class SaveFrame extends JFrame {
 		contentPane.add(bottom);
 		bottom.add(Confirm);
 		bottom.add(Break);
-		
+				
 		Confirm.addActionListener(new ActionListener() {		//確認
 			public void actionPerformed(ActionEvent arg0) {
 				boolean flag = false;
@@ -68,6 +73,7 @@ public class SaveFrame extends JFrame {
 					if(saveMoney <= 0) throw new ArithmeticException();
 					flag = atm.saveMoney(saveMoney);
 					if(!flag) throw new Exception();
+					setLabelMoney(atm);
 					closeFrame("交易成功，現金已存入帳戶!");
 				}catch(NullPointerException e){
 					closeFrame("未輸入金額，交易取消!");
@@ -84,6 +90,9 @@ public class SaveFrame extends JFrame {
 				dispose();
 			}
 		});
+	}
+	private void setLabelMoney(ATM atm){
+		moneyLab.setText(atm.checkMoney()[1]);
 	}
 	public boolean status() {
 		return status;

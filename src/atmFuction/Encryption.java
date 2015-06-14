@@ -1,3 +1,4 @@
+package atmFuction;
 /*	Class: Encryption
  * 	Fuction: 加密解密服務
  */

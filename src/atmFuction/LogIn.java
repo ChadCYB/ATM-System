@@ -1,3 +1,4 @@
+package atmFuction;
 /*	Class: LogIn
  * 	Fuction: 處理LogInFrame視窗界面和Bank的溝通(介面者)
  */

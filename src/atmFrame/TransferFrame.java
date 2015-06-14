@@ -1,3 +1,4 @@
+package atmFrame;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -10,7 +11,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-class TransferFrame extends JFrame implements ActionListener{
+import atmFuction.ATM;
+
+class TransferFrame extends JFrame implements ActionListener {
 		private JPanel contentPane = new JPanel();
 		private JLabel Transfer_Account=new JLabel("匯款帳號");			//輸入轉帳帳號文字(顯示)
 		private JTextField txtTransfer_Account =new JTextField();		//輸入轉帳帳號(輸入區)

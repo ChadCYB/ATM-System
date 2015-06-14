@@ -1,3 +1,4 @@
+package atmFrame;
 /*	Class: MainFrame1
  * 	Fuction: 主功能視窗
  */
@@ -9,6 +10,8 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 import javax.swing.*; 
+
+import atmFuction.ATM;
 
 public class MainFrame1 extends JFrame{
 	private Label welcome=new Label("welcome");
