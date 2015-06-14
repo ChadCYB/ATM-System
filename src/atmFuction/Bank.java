@@ -158,10 +158,12 @@ public class Bank {
 			data[1] = rs.getString("Balance");
 			rs.close();
 			System.out.println("<dbConn.close>");			//<<<<<checkpoint
+			atmLogger("查錢", 0, aID, "", "Check Money Success");
 		}catch (SQLException e) {
 			e.printStackTrace();
 			data[0] = "Error";
 			data[1] = "Error";
+			atmLogger("查錢", 0, aID, "", "Check Money Error");
 		}
 		return data;
 	}
@@ -174,6 +176,11 @@ public class Bank {
 				+" SET Balance = Balance - " + money
 				+" WHERE BankAccID = ( SELECT BankAccID FROM tAccount WHERE AccID = '" +aID+ "' AND PIN = '"+ aPIN +"')");
 			flag = this.dbUpdate(sql);
+		}
+		if(money<0){
+			atmLogger("存錢", -money, aID, "", "Save Money " + (flag?"Success":"Failed"));
+		}else{
+			atmLogger("領錢", money, aID, "", "pickUp Money " + (flag?"Success":"Failed"));
 		}
 		return flag;
 	}
@@ -189,9 +196,12 @@ public class Bank {
 					+" SET Balance = Balance + " + money
 					+" WHERE BankAccID = '" +trfInID+ "'");
 			flag1 = this.dbUpdate(sql);
+			atmLogger("轉帳", money, aID, trfInID, "Transfer" + (flag1?"Success":"Failed"));
 		}else if(!flag1){									//領錢錯誤
+			atmLogger("轉帳", money, aID, trfInID, "pickUp Failed");
 			System.out.println("<pickUp Failed>");
 		}else{												//匯款錯誤
+			atmLogger("轉帳", money, aID, trfInID, "trfInID NotExist");
 			System.out.println("<trfInID NotExist>");
 			saveMoney(aID,aPIN,money); 						//匯款失敗，把錢存回來
 			flag1 = false;
@@ -199,7 +209,27 @@ public class Bank {
 		return flag1;
 	}
 	
-//	private void atmLogger(){
-//		
-//	}
+	private void atmLogger(String logType, double TxAmount, String AccNo, String TfrAccNo, String Message){
+		String sql = "";
+		switch(logType){
+			case "查錢":
+				sql =("INSERT INTO tLog(TIME_COL, logType, TxAmount, AccNo, Message)"
+					+" VALUES (now(), \'CheckMoney\', 0, \'" + AccNo + "\', \'" + Message + "\')"); 
+				break;
+			case "存錢":
+				sql =("INSERT INTO tLog(TIME_COL, logType, TxAmount, AccNo, Message)"
+					+" VALUES (now(), \'SaveMoney\', " + TxAmount + ", \'" + AccNo + "\', \'" + Message + "\')"); 
+				break;
+			case "領錢":
+				sql =("INSERT INTO tLog(TIME_COL, logType, TxAmount, AccNo, Message)"
+					+" VALUES (now(), \'PickUpMoney\', " + TxAmount + ", \'" + AccNo + "\', \'" + Message + "\')"); 
+				break;
+			case "轉帳":
+				sql =("INSERT INTO tLog(TIME_COL, logType, TxAmount, TfrAccNo, AccNo, Message)"
+					+" VALUES (now(), \'TransferMoney\', " + TxAmount + ", \'" + TfrAccNo + "\',"
+										+ " \'" + AccNo + "\', \'" + Message + "\')"); 
+				break;
+		}
+		dbUpdate(sql);
+	}
 }

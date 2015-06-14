@@ -1,23 +1,21 @@
 package atmFrame;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
+import java.awt.Font;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 
 import atmFuction.ATM;
-import atmFuction.Logger;
 
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class SaveFrame extends JFrame {
 	private JPanel contentPane=new JPanel();
