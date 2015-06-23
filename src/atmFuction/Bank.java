@@ -48,11 +48,11 @@ public class Bank {
 		Statement stmt = null;								//資料庫操作
 		ResultSet rs1 = null;
 		CachedRowSetImpl crs = null;						//ResultSet的Cached
-		System.out.println(sql);											//<<<<<checkpoint
+//		System.out.println(sql);											//<<<<<checkpoint
 		try {
 			Class.forName(DBDRIVER);						//載入驅動程式
 			dbConn = DriverManager.getConnection(host,username,password);		//連結資料庫(URL,user,passwd)
-			System.out.println(dbConn);						//Check Point
+//			System.out.println(dbConn);						//Check Point
 			if(!sql.equals("")){
 				stmt = dbConn.createStatement();			//建例實體Statement物件
 				rs1 = stmt.executeQuery(sql);				//執行SQL操作
@@ -62,28 +62,28 @@ public class Bank {
 			rs1.close();
 			stmt.close();									//操作關閉
 			dbConn.close();									//段開資料庫
-			System.out.println("<dbConn.close>");							//<<<<<checkpoint
+//			System.out.println("<dbConn.close>");							//<<<<<checkpoint
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("<return rs checkpoint>");						//<<<<checkpoint
+//		System.out.println("<return rs checkpoint>");						//<<<<checkpoint
 		return crs;											//回傳查詢資料
 	}
 	private boolean dbUpdate(String sql){			//資料庫更新功能
 		Connection dbConn = null;							//資料庫連結
 		Statement stmt = null;								//資料庫操作
-		System.out.println(sql);											//<<<<<checkpoint
+//		System.out.println(sql);											//<<<<<checkpoint
 		try {
 			Class.forName(DBDRIVER);						//載入驅動程式
 			dbConn = DriverManager.getConnection(host,username,password);		//連結資料庫(URL,user,passwd)
-			System.out.println(dbConn);						//<<<Check Point
+//			System.out.println(dbConn);						//<<<Check Point
 			stmt = dbConn.createStatement();				//建例實體Statement物件
 			stmt.executeUpdate(sql);						//執行SQL更新操作
 			stmt.close();									//操作關閉
 			dbConn.close();									//段開資料庫
-			System.out.println("<dbConn.close>");							//<<<<<checkpoint
+//			System.out.println("<dbConn.close>");							//<<<<<checkpoint
 			return true;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -114,7 +114,7 @@ public class Bank {
 		boolean loginFlag = false;
 		try {
 			rs = this.dbSearch(sql);
-			System.out.println("<SQL>-getRS-");				//<<<<<checkpoint
+//			System.out.println("<SQL>-getRS-");				//<<<<<checkpoint
 			int count = 0;
 			while(rs.next()) count++;
 			loginFlag = (count == 1) ? true:false;
@@ -135,7 +135,7 @@ public class Bank {
 			rs = this.dbSearch(sql);
 			rs.next();
 			name = rs.getString("Name");
-			System.out.println("<SQL>-getName-");			//<<<<<checkpoint
+//			System.out.println("<SQL>-getName-");			//<<<<<checkpoint
 			return name;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -157,7 +157,7 @@ public class Bank {
 			data[0] = rs.getString("BankAccID");
 			data[1] = rs.getString("Balance");
 			rs.close();
-			System.out.println("<dbConn.close>");			//<<<<<checkpoint
+//			System.out.println("<dbConn.close>");			//<<<<<checkpoint
 			atmLogger("查錢", 0, aID, "", "Check Money Success");
 		}catch (SQLException e) {
 			e.printStackTrace();

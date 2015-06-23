@@ -53,10 +53,15 @@ public class CheckMoneyFrame extends JFrame{
 		cp.add(jp1,BorderLayout.CENTER);
 		cp.add(jp2,BorderLayout.SOUTH);
 		getDetail(atm);
+		
 		jlb1.setFont(new Font("TimesRoman",Font.PLAIN ,25) );
 		jlb2.setFont(new Font("TimesRoman",Font.PLAIN ,33) );
 		jlb3.setFont(new Font("TimesRoman",Font.PLAIN ,25) );
 		jlb4.setFont(new Font("TimesRoman",Font.PLAIN ,33) );
+		jbtnBack.setFont(new Font("新細明體", Font.BOLD, 22));
+		jbtnEXIT.setFont(new Font("新細明體", Font.BOLD, 22));
+		jp1.setBackground(new Color(180, 240, 245));
+		jp2.setBackground(Color.orange);
 		
 		jp1.setLayout(new GridLayout(2,2,5,5));
 		jp1.add(jlb1);

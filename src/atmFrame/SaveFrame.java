@@ -1,5 +1,6 @@
 package atmFrame;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -41,14 +42,19 @@ public class SaveFrame extends JFrame {
 		this.setBounds((int)((screenSize.getWidth()-Width)*0.5), (int)((screenSize.getHeight()-Height)*0.5), Width, Height);
 
 		this.setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(0, 1, 5, 5));
+		contentPane.setLayout(new GridLayout(0, 1, 5, 0));
 		north.setLayout(new GridLayout(1, 0, 5, 5));
 		center.setLayout(new GridLayout(1, 0, 0, 0));
 		bottom.setLayout(new GridLayout(1, 2, 5, 5));
 		
+		north.setBackground(new Color(180, 240, 245));
+		center.setBackground(new Color(180, 240, 245));
+		bottom.setBackground(Color.orange);
+		
 		nowMoney.setFont(new Font("新細明體", Font.BOLD, 22));
 		inMoney.setFont(new Font("新細明體", Font.BOLD, 22));
 		moneyLab.setFont(new Font("新細明體", Font.BOLD, 22));
+		jtf1.setFont(new Font("新細明體", Font.BOLD, 22));
 		inMoney.setHorizontalAlignment(SwingConstants.CENTER);
 		nowMoney.setHorizontalAlignment(SwingConstants.CENTER);
 		setLabelMoney(atm);

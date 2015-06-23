@@ -1,6 +1,8 @@
 package atmFrame;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,6 +42,14 @@ class TransferFrame extends JFrame implements ActionListener {
 		
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(3,2,0,50));
+		contentPane.setBackground(new Color(180, 240, 245));
+		
+		Transfer_Account.setFont(new Font("新細明體", Font.BOLD, 22));
+		txtTransfer_Account.setFont(new Font("新細明體", Font.BOLD, 22));
+		Money.setFont(new Font("新細明體", Font.BOLD, 22));
+		txtMoney.setFont(new Font("新細明體", Font.BOLD, 22));
+		Confirm.setFont(new Font("新細明體", Font.BOLD, 22));
+		Cancel.setFont(new Font("新細明體", Font.BOLD, 22));
 		
 		contentPane.add(Transfer_Account);
 		contentPane.add(txtTransfer_Account);

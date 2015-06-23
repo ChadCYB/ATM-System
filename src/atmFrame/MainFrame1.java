@@ -36,10 +36,13 @@ public class MainFrame1 extends JFrame{
 		this.setBounds((int)((screenSize.getWidth()-Width)*0.5), (int)((screenSize.getHeight()-Height)*0.5), Width, Height);
 
 		this.setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(0, 1, 2, 5));
+		contentPane.setLayout(new GridLayout(0, 1, 2, 0));
 		welcome.setFont(new Font("Serief",Font.ITALIC+Font.BOLD,40));//¶r≈È±◊√‰+≤ ≈È+40¶r
 		gridpanel.setLayout(new GridLayout(0, 2, 2, 5));
 
+		welcome.setBackground(new Color(180, 240, 245));
+		jpwelcome.setBackground(new Color(180, 240, 245));
+		gridpanel.setBackground(Color.orange);
 		contentPane.add(jpwelcome);
 		jpwelcome.add(welcome);
 		contentPane.add(gridpanel);
