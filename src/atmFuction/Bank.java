@@ -150,7 +150,7 @@ public class Bank {
 			("SELECT tBankAccount.BankAccID,Balance FROM tBankAccount JOIN tAccount "
 			+ "ON tBankAccount.BankAccID = tAccount.BankAccID "
 			+ "WHERE AccID = '" +aID+ "' AND PIN = '"+ aPIN +"'");
-		System.out.println(sql);
+//		System.out.println(sql);
 		try{
 			rs = this.dbSearch(sql);
 			rs.next();										//rs指標指向第一個(不然預設是指向null)
