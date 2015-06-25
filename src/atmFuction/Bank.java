@@ -225,6 +225,7 @@ public class Bank {
 					+" VALUES (now(), \'PickUp$\', " + TxAmount + ", \'" + AccNo + "\', \'" + Message + "\')"); 
 				break;
 			case "Âà±b":
+				TfrAccNo = TfrAccNo.substring(8);
 				sql =("INSERT INTO tLog(TIME_COL, logType, TxAmount, TfrAccNo, AccNo, Message)"
 					+" VALUES (now(), \'Trf$\', " + TxAmount + ", \'" + TfrAccNo + "\',"
 										+ " \'" + AccNo + "\', \'" + Message + "\')"); 
