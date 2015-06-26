@@ -99,6 +99,8 @@ public class LogInFrame extends JFrame implements ActionListener {
 		jbtnCancel.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent ae){
 				randJBTN();								//亂數按鈕
+				jtfAcc.setText("");
+				jpfPass.setText("");
 			}
 		});
 		jbtnEnter.addActionListener(new ActionListener(){
@@ -115,7 +117,7 @@ public class LogInFrame extends JFrame implements ActionListener {
 							try {
 								mFrame1.addWindowListener(new WindowListener(){
 									public void windowClosed(WindowEvent arg0) {		//視窗關閉後
-//										resetFrame(); //<<<<<<<<<<<<<<<<<<<RESET
+										resetFrame(); //<<<<<<<<<<<<<<<<<<<RESET
 										JOptionPane.showMessageDialog(null,"感謝使用，祝交易愉快  !");
 										setVisible(true);
 									}
@@ -173,6 +175,7 @@ public class LogInFrame extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) { 		//接收按鈕指令
 		JButton HitBtn = (JButton) e.getSource(); 		//查詢來源
 		jpfPass.setText(jpfPass.getText() + HitBtn.getText());
+		randJBTN();
 	}
 
 }

@@ -11,10 +11,12 @@ import java.awt.event.WindowListener;
 
 import javax.swing.*; 
 
+import Animation.WelcomeLable;
 import atmFuction.ATM;
 
 public class MainFrame1 extends JFrame{
-	private Label welcome=new Label("welcome");
+	private WelcomeLable welcome = new WelcomeLable("welcome");
+//	private Label welcome=new Label("welcome");
 	private JButton Receive=new JButton("領錢");
 	private JButton SaveMoney=new JButton("存錢");
 	private JButton Transfer=new JButton("匯款");
@@ -23,6 +25,7 @@ public class MainFrame1 extends JFrame{
 	private JPanel jpwelcome = new JPanel();
 	private JPanel gridpanel = new JPanel();
 	private int Height = 500, Width = 500;
+	private Thread thr;
 	
 	public MainFrame1(ATM atm){
 		initComp(atm);
@@ -40,6 +43,7 @@ public class MainFrame1 extends JFrame{
 		welcome.setFont(new Font("Serief",Font.ITALIC+Font.BOLD,40));//字體斜邊+粗體+40字
 		gridpanel.setLayout(new GridLayout(0, 2, 2, 5));
 
+		startAnimation();
 		welcome.setBackground(new Color(180, 240, 245));
 		jpwelcome.setBackground(new Color(180, 240, 245));
 		gridpanel.setBackground(Color.orange);
@@ -54,7 +58,7 @@ public class MainFrame1 extends JFrame{
 		SaveMoney.setFont(new Font("TimesRoman",Font.PLAIN ,40) );
 		Check.setFont(new Font("TimesRoman",Font.PLAIN ,40) );
 		Transfer.setFont(new Font("TimesRoman",Font.PLAIN ,40) );
-		
+
 		Receive.addActionListener(new ActionListener(){		//領錢
 			public void actionPerformed(ActionEvent ae){
 				final PickUpFrame pkFrame = new PickUpFrame(atm);
@@ -179,5 +183,9 @@ public class MainFrame1 extends JFrame{
 				setVisible(false);
 			}
 		});
+	}
+	private void startAnimation(){
+		thr = new Thread(welcome);
+		thr.start();
 	}
 }

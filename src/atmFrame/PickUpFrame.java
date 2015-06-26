@@ -10,16 +10,19 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
+import Animation.PickUpLabel;
 import atmFuction.ATM;
 
 public class PickUpFrame extends JFrame {
 	private JPanel contentPane = new JPanel();
-	private JLabel Receive = new JLabel("領錢");
+//	private JLabel Receive = new JLabel("領錢");
+	private PickUpLabel ReceiveJlb = new PickUpLabel("領錢");
 	private JPanel gridpanel = new JPanel();
 	private JButton btn1 = new JButton("$1000");
 	private JButton btn2 = new JButton("$2000");
@@ -29,6 +32,7 @@ public class PickUpFrame extends JFrame {
 	private JButton btntext = new JButton("自行輸入(只提供千元)");
 	private int Height = 450, Width = 500;
 	private boolean status = false;
+	private Thread tk ;		//領錢動畫執行緒
 	
 	public PickUpFrame(ATM atm) {
 		initComp(atm);
@@ -46,10 +50,9 @@ public class PickUpFrame extends JFrame {
 		contentPane.setBackground(new Color(180, 240, 245));
 		gridpanel.setBackground(Color.orange);
 		
-		Receive.setFont(new Font("新細明體", Font.BOLD, 40));
-		Receive.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		contentPane.add(Receive);
+		ReceiveJlb.setFont(new Font("新細明體", Font.BOLD, 40));
+		ReceiveJlb.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.add(ReceiveJlb);
 		contentPane.add(gridpanel);
 		btn1.setFont(new Font("Serief",Font.PLAIN,30));
 		btn2.setFont(new Font("Serief",Font.PLAIN,30));
@@ -96,6 +99,7 @@ public class PickUpFrame extends JFrame {
 					double money = Double.parseDouble(str);     				//轉換成整數
 					if(money<=0) throw new NumberFormatException();				//沒有輸入東西
 					if(!atm.pickUpMoney(money*1000)) throw new Exception();		//餘額不足
+					pickupAnimation();	//<<<啟動動畫執行緒
 					closeFrame("交易成功，請提取現金  !");
 				}catch (NullPointerException ex){
 					closeFrame("未輸入資料，交易已取消 !");
@@ -108,8 +112,16 @@ public class PickUpFrame extends JFrame {
 			}
 		});
 	}
+	private void pickupAnimation(){
+		tk = new Thread(ReceiveJlb);
+		tk.start();
+	}
+	public void stopLoop(){
+		ReceiveJlb.loop = false;
+	}
 	private void atmPickUp(double money, ATM atm){
 		if(atm.pickUpMoney(money)){
+			pickupAnimation();	//<<<啟動動畫執行緒
 			closeFrame("交易成功，請提取現金  !");
 		}else{
 			closeFrame("交易失敗，您的帳戶餘額不足  !");
@@ -120,10 +132,12 @@ public class PickUpFrame extends JFrame {
 		int n = JOptionPane.showConfirmDialog(null,
 				"您是否繼續交易?","操作問題", JOptionPane.YES_NO_OPTION);
 		status = (n != JOptionPane.YES_OPTION) ? true:false;
+		stopLoop();
 		dispose();
 	}
 	public boolean status() {
 		return status;
 	}
+
 
 }
