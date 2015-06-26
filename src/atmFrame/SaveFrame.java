@@ -55,6 +55,8 @@ public class SaveFrame extends JFrame {
 		inMoney.setFont(new Font("新細明體", Font.BOLD, 22));
 		moneyLab.setFont(new Font("新細明體", Font.BOLD, 22));
 		jtf1.setFont(new Font("新細明體", Font.BOLD, 22));
+		Confirm.setFont(new Font("新細明體", Font.BOLD, 22));
+		Break.setFont(new Font("新細明體", Font.BOLD, 22));
 		inMoney.setHorizontalAlignment(SwingConstants.CENTER);
 		nowMoney.setHorizontalAlignment(SwingConstants.CENTER);
 		setLabelMoney(atm);
