@@ -139,6 +139,7 @@ public class LogInFrame extends JFrame implements ActionListener {
 					setVisible(false);
 				}else{
 					JOptionPane.showMessageDialog(null,"Ops! "+sAcc+" please try again!");
+					resetFrame();
 				}
 			}
 		});

@@ -70,12 +70,14 @@ class TransferFrame extends JFrame implements ActionListener {
 				String trfID = txtTransfer_Account.getText();
 				String trfBalance = txtMoney.getText();
 				try{
-					if(trfID.isEmpty() || trfBalance.isEmpty()) throw new Exception();	//沒有輸入東西
+					if(trfID.isEmpty() || trfBalance.isEmpty() || trfID.length() != 7)
+						throw new Exception();	//沒有輸入東西
 					double money = Double.parseDouble(trfBalance);				//轉換成整數
 					if(money <=0) throw new Exception();
 					if(!atm.moneyTransfer(money, trfID)) throw new Exception();	//餘額不足
 					closeFrame("匯款成功  !");
 				}catch (Exception ex){
+//					ex.printStackTrace();
 					closeFrame("發生錯誤，交易已取消 !");
 				}
 				break;
