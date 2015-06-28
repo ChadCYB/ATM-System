@@ -33,8 +33,10 @@ public class LogInFrame extends JFrame implements ActionListener {
 	private JButton jbtnClear2 = new JButton("Clear");
 	private JLabel jlb1 = new JLabel("ID:");
 	private JLabel jlb2 = new JLabel("PIN:");
-	private JTextField jtfAcc = new JTextField("A10546");
-	private JPasswordField jpfPass = new JPasswordField("458712");
+//	private JTextField jtfAcc = new JTextField("A10546");
+//	private JPasswordField jpfPass = new JPasswordField("458712");
+	private JTextField jtfAcc = new JTextField();
+	private JPasswordField jpfPass = new JPasswordField();
 
 	private JButton JButn[] = new JButton[12];
 	private JButton jbtnCancel = new JButton("Cancel");
